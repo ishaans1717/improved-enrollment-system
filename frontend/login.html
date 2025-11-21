@@ -3,41 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <style src="styles/login.css"></style>
+    <title>Course Registrration Login</title>
+    <link rel="stylesheet" href="styles/login.css">
 </head>
 <body>
-    <section id="header">
-        <img src="./assets/logo_isu.png" alt="">
-        <p3>Course Registration</p3>
-    </section> 
-    <section id="main-content">
-        <section id="welcome-side">
-            <p3>Welcome back</p3>
-            <p1>Sign in to plan your classes</p1>
-            <p3>Register faster, track degree progress, and see personalized picks.</p3>
-            <img src="./assets/computer_logo.svg" alt="">
+
+    <header id="header">
+        <img src="./assets/logo_isu.png" class="logo" alt="Illinois State University Logo">
+        <span>Course Registration</span>
+    </header> 
+
+    <main id="main-content">
+
+        <section class="welcome-side">
+            <h4 class="welcome-back">Welcome back</h4>
+            <h1 class="main-title">Sign in to plan your classes</h1>
+            <p class="subtitle">
+                Register faster, track degree progress, and see personalized picks.
+            </p>
+
+            <img src="./assets/computer_logo.svg" class="front-photo" alt="Photo of a woman on a computer doing tasks">
+
             <ul>
                 <li>Secure login</li>
                 <li>Single sign-on</li>
                 <li>Student support 24/7</li>
             </ul>
         </section>
+
         <section id="sign-in-block">
-            <p1>Sign in</p1>
-            <p3>Use your university email</p3>
+            <h2>Sign in</h2>
+            <p>Use your university email</p>
+
             <form>
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+               
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+              
+               
+                <label for="password" id="password" name="password" required>Password:</label>
+                <input type="password" id="password" name="password">
+
+                <div class="row">
+                    <label class="remember"> <input type="checkbox"> Remember me </label>
                 </div>
-                <div>
-                    <label for="password" id="password" name="password" required>Password:</label>
-                    <input type="password" id="password" name="password">
-                </div>
-                <button type="submit">Sign In</button>
+              
+                <button class="button primary">Sign In</button>
             </form>
+
+            <button class="button secondary">Use University Login</button>
+
+            <p class="create">New here? <a href="#">Create account</a></p>
+
         </section>
-    </section>   
+
+    </main>   
 </body>
 </html>
