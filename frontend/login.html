@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Registrration Login</title>
+    <title>Course Registration Login</title>
     <link rel="stylesheet" href="styles/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header id="header">
+    <header class="header">
         <img src="./assets/logo_isu.png" class="logo" alt="Illinois State University Logo">
-        <span>Course Registration</span>
+        <span class="header-title">Course Registration</span>
     </header> 
 
-    <main id="main-content">
+    <main class="container">
 
         <section class="welcome-side">
             <h4 class="welcome-back">Welcome back</h4>
@@ -24,14 +26,14 @@
 
             <img src="./assets/computer_logo.svg" class="front-photo" alt="Photo of a woman on a computer doing tasks">
 
-            <ul>
+            <ul class="feature-list">
                 <li>Secure login</li>
                 <li>Single sign-on</li>
                 <li>Student support 24/7</li>
             </ul>
         </section>
 
-        <section id="sign-in-block">
+        <section class="sign-in-box">
             <h2>Sign in</h2>
             <p>Use your university email</p>
 
@@ -41,8 +43,8 @@
                 <input type="email" id="email" name="email" required>
               
                
-                <label for="password" id="password" name="password" required>Password:</label>
-                <input type="password" id="password" name="password">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
 
                 <div class="row">
                     <label class="remember"> <input type="checkbox"> Remember me </label>
