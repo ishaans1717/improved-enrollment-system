@@ -1,5 +1,6 @@
 package com.improved_enrollment_system.improved_enrollment_system.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,5 +30,16 @@ public class Catalog {
     private Integer year;
 
     @OneToMany(mappedBy = "catalog", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Course> courses = new ArrayList<>();
+
+    public void addCourse(Course course) {
+        courses.add(course);
+        course.setCatalog(this);
+    }
+
+    public void removeCourse(Course course) {
+        courses.remove(course);
+        course.setCatalog(null);
+    }
 }

@@ -1,4 +1,5 @@
 package com.improved_enrollment_system.improved_enrollment_system.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,5 +31,6 @@ public class Course  {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "catalog_id")
-    private Course  course;
+    @JsonBackReference
+    private Catalog catalog;
 }
