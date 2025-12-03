@@ -28,7 +28,11 @@ public class AdministratorService {
         return administratorRepository.save(administrator);
     }
 
-    public void deleteAdministrator(Long id) {
-        administratorRepository.deleteById(id);
+    public boolean deleteAdministrator(Long id) {
+        if (administratorRepository.existsById(id)) {
+            administratorRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
