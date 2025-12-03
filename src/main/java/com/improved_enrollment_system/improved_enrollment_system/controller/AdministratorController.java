@@ -2,6 +2,8 @@ package com.improved_enrollment_system.improved_enrollment_system.controller;
 
 import com.improved_enrollment_system.improved_enrollment_system.entity.Administrator;
 import com.improved_enrollment_system.improved_enrollment_system.service.AdministratorService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,7 +34,13 @@ public class AdministratorController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAdministrator(@PathVariable Long id) {
-        administratorService.deleteAdministrator(id);
+    public ResponseEntity<String> deleteAdministrator(@PathVariable Long id) {
+        boolean deleted = administratorService.deleteAdministrator(id);
+        if (deleted) {
+            return ResponseEntity.ok("Student deleted successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Student not found with ID " + id);
+        }
     }
 }

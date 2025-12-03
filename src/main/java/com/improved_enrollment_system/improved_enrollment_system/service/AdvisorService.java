@@ -31,7 +31,11 @@ public class AdvisorService {
         return advisorRepository.save(advisor);
     }
 
-    public void deleteAdvisor(Long id) {
-        advisorRepository.deleteById(id);
+    public Boolean deleteAdvisor(Long id) {
+        if (advisorRepository.existsById(id)) {
+            advisorRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
