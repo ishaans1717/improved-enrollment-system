@@ -295,6 +295,7 @@ header {
   margin-top: 4px;
 }
 
+
 .dropdown-container {
     position: relative;
     display: inline-block;
@@ -385,3 +386,4 @@ header {
 .student-details:hover + .dropdown-menu {
     display: block;
 }
+
