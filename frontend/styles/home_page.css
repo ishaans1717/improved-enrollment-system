@@ -43,7 +43,9 @@ header {
 
 .main-section {
     display: flex;
-    height: 100vh;
+    height: 90vh;
+    width: 100vw;
+    margin: 0;
 }
 
 .options {
@@ -61,12 +63,16 @@ header {
     border: none;
     outline: none;
     width: 100%;
-    height: 40px;
-    border-radius: 6px;
+    height: 48px;
+    padding: 0 18px;
+    border-radius: 8px;
     background-color: #f4f4f5;
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
 
-
-
+.option-btn:last-child {
+    margin-bottom: 0;
 }
 
 .option-btn:hover {
@@ -79,9 +85,10 @@ header {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    height: calc(100vh - 95px); /* Subtract header height */
+    flex: 1;
     justify-content: space-evenly;
     padding: 20px;
+    height: 100%;
 }
 
 .search-area {
@@ -90,11 +97,11 @@ header {
     gap: 15px;
     padding-bottom: 15px;
     border-bottom: 2px solid #e5e7eb;
-    
+    text-align: center;
 }
 
 .class-search {
-    border: 1px solid #e5e7eb; /* Light gray */
+    border: 1px solid #e5e7eb;
     border-radius: 6px;
     height: 40px;
     padding: 8px 12px;
@@ -110,14 +117,15 @@ header {
     background-color: #ef4444;
     border-radius: 6px;
     color: #fff;
+    box-shadow: 3px 3px 5px rgba(0,0,0,100); 
+
 }
 
 .recommendation-area {
     display: flex;
     flex-direction: column;
     gap: 15px;
-        padding-bottom: 15px;
-
+    padding-bottom: 15px;
     border-bottom: 2px solid #e5e7eb;
 
 }
@@ -147,8 +155,84 @@ header {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    height: calc(100vh - 95px); /* Subtract header height */
+    flex: 1;
     justify-content: space-evenly;
     padding: 20px;
+    height: 100%;
 
+}
+
+.registration-cart {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 2px solid #e5e7eb;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.38);
+
+}
+
+.cart-block {
+    display: flex;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 10px;
+    gap: 10px;
+
+    
+}
+
+.title {
+    font-weight: bold;
+}
+
+.text {
+    font-weight: 200;
+}
+
+.announcement-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 2px solid #e5e7eb;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.38);
+}
+
+.announcement {
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 10px;
+}
+
+.main-text {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.weekly-list {
+  display: flex;
+  gap: 16px;
+  margin: 24px 0;
+}
+.day-block {
+  background: #f4f4f5;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 120px;
+  box-shadow: 4px 4px 4px rgba(0,0,0,0.38);
+}
+.day-block h4 {
+  color: #ef4444;
+  margin-bottom: 8px;
+}
+.day-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.day-block li {
+  margin-bottom: 6px;
+  color: #111827;
 }
