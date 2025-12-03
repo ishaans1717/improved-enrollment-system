@@ -27,6 +27,7 @@ public class Catalog {
 
     private String term;
 
+    @Column(name = "catalog_year")
     private Integer year;
 
     @OneToMany(mappedBy = "catalog", cascade = CascadeType.ALL, orphanRemoval = true)
