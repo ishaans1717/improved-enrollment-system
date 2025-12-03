@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration</title>
+    <link rel="stylesheet" href="../styles/home_page.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- The page header -->
+    <header>
+        <div class="top-left">
+            <img src="../assets/logo_isu.png" alt="ISU logo" style="width: 50px;">
+            <span>Course Registration</span>
+        </div>
+
+        <div class="top-tight">
+            <span class="student-details">Aaliyah ▼</span>
+        </div>
+
+    </header>
+
+    <!-- The left section of page -->
+    <main class="main-section">
+
+        <section class="options">
+            <button class="option-btn">👤 Profile</button>
+            <button class="option-btn">📘 Register</button>
+            <button class="option-btn">📊 Degree Progress</button>
+            <button class="option-btn">⭐ Recommendations</button>
+        </section>
+
+        <!-- Middle section of page -->
+        <section class="middle-section">
+            <h1>Search Classes</h1>
+
+            <div class="search-area">
+                <input type="text" name="class-search" 
+                class="class-search" placeholder="Search by course, subject, professor...">
+                <button class="main-btn">Search</button>
+            </div>
+
+            <div class="recommendation-area">
+                <h2>Recommendations</h2>
+                <p>Based on IT major</p>
+
+                <div class="recommend-block">
+                    <div class="logo-recommend">
+                        <span>IT</span>
+                    </div>
+                    <div class="class-recommend-info">
+                        <p>IT 355 Secure Software Development</p>
+                        <div class="more-info-recommend">
+                            <p class="date">T TH 2:00 PM - 3:15 PM</p>
+                            <p class="credit-amount">3 Credits</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="view-button">View All</button>
+
+            </div>
+
+            <div class="settings-area">
+                <h2>Settings</h2>
+                <p>Manage your account and preferences</p>
+                <button class="settings-button">Account Settings</button>
+            </div>
+
+        </section>
+
+        <!-- Right section of page -->
+        <section class="right-section">
+
+            <div class="registration-cart">
+                <h3>My Registration Cart</h3>
+
+                <div class="cart-block">
+                    <div class="cart-class">
+                        <p>IT 326 Principles of Software Engineering</p>
+                        <p>T TH 2:00 PM - 3:15 PM</p>
+                    </div>
+                    <span> > </span>
+                </div>
+
+                <div class="cart-block">
+                    <div class="cart-class">
+                        <p>IT 383 Principles of Operating Systems</p>
+                        <p>M W 3:35 PM - 4:50 PM</p>
+                    </div>
+                    <span> > </span>
+                </div>
+
+                <button class="main-btn">Submit Registration</button>
+            </div>
+
+            <div class="announcement-block">
+                <h3>Annoucements</h3>
+
+                <div class="announcement">
+                    <p class="announcement-title">System maintenance</p>
+                    <p class="announcement-text">We will be performing maintenance on Saturday, December 13th at 3:00 PM</p>
+                </div>
+
+                <div class="announcement">
+                    <p class="announcement-title">Add/Drop deadline</p>
+                    <p class="announcement-text">November 13th</p>
+                </div>
+            </div>
+
+            <div class="schedule-block">
+                <h3>Weekly Schedule</h3>
+                <p>Mon Tu Wed Thurs Fri</p>
+
+            </div>
+
+        </section>
+
+    </main>
+</body>
