@@ -2,9 +2,13 @@ package com.improved_enrollment_system.improved_enrollment_system.service;
 
 import com.improved_enrollment_system.improved_enrollment_system.dto.LoginResult;
 import com.improved_enrollment_system.improved_enrollment_system.dto.LogoutResult;
+import com.improved_enrollment_system.improved_enrollment_system.entity.Administrator;
+import com.improved_enrollment_system.improved_enrollment_system.entity.Advisor;
 import com.improved_enrollment_system.improved_enrollment_system.entity.Student;
 import com.improved_enrollment_system.improved_enrollment_system.entity.User;
 import com.improved_enrollment_system.improved_enrollment_system.entity.UserSession;
+import com.improved_enrollment_system.improved_enrollment_system.repository.AdministratorRepository;
+import com.improved_enrollment_system.improved_enrollment_system.repository.AdvisorRepository;
 import com.improved_enrollment_system.improved_enrollment_system.repository.StudentRepository;
 import com.improved_enrollment_system.improved_enrollment_system.repository.UserRepository;
 import com.improved_enrollment_system.improved_enrollment_system.repository.UserSessionRepository;
@@ -20,33 +24,69 @@ public class UniversalAuthService {
     private final UserRepository userRepository;
     private final UserSessionRepository sessionRepository;
     private final StudentRepository studentRepository;
+    private final AdvisorRepository advisorRepository;
+    private final AdministratorRepository administratorRepository;
 
     public UniversalAuthService(UserRepository userRepository,
                                 UserSessionRepository sessionRepository,
-                                StudentRepository studentRepository) {
+                                StudentRepository studentRepository,
+                                AdvisorRepository advisorRepository,
+                                AdministratorRepository administratorRepository) {
         this.userRepository = userRepository;
         this.sessionRepository = sessionRepository;
         this.studentRepository = studentRepository;
+        this.advisorRepository = advisorRepository;
+        this.administratorRepository = administratorRepository;
     }
 
     public LoginResult createAccount(String username, String password, String email, String userType) {
         try {
+            System.out.println("📝 Creating account: " + email + " as " + userType);
+
+            // Check if email already exists
             Optional<User> existingByEmail = userRepository.findByEmail(email);
             if (existingByEmail.isPresent()) {
                 return new LoginResult(false, "Email already registered");
             }
 
-            Student student = new Student();
-            student.setUsername(username);
-            student.setEmail(email);
-            student.setPassword(password);
-            student.setGpa(0.0);
-            student.setMajor("Undeclared");
-            student.setStudYear("Freshman");
+            // Create the appropriate user type
+            User newUser;
 
-            studentRepository.save(student);
+            if ("ADMINISTRATOR".equalsIgnoreCase(userType) || "Administrator".equalsIgnoreCase(userType)) {
+                // Create Administrator
+                Administrator admin = new Administrator();
+                admin.setUsername(username);
+                admin.setEmail(email);
+                admin.setPassword(password);
+                admin.setRole("ADMINISTRATOR");
+                newUser = administratorRepository.save(admin);
+                System.out.println("✅ Administrator account created: " + email);
 
-            System.out.println("✅ Account created: " + email);
+            } else if ("ADVISOR".equalsIgnoreCase(userType) || "Advisor".equalsIgnoreCase(userType)) {
+                // Create Advisor
+                Advisor advisor = new Advisor();
+                advisor.setUsername(username);
+                advisor.setEmail(email);
+                advisor.setPassword(password);
+                advisor.setRole("ADVISOR");
+                advisor.setDepartment("General");
+                newUser = advisorRepository.save(advisor);
+                System.out.println("✅ Advisor account created: " + email);
+
+            } else {
+                // Default to Student
+                Student student = new Student();
+                student.setUsername(username);
+                student.setEmail(email);
+                student.setPassword(password);
+                student.setRole("STUDENT");
+                student.setGpa(0.0);
+                student.setMajor("Undeclared");
+                student.setStudYear("Freshman");
+                newUser = studentRepository.save(student);
+                System.out.println("✅ Student account created: " + email);
+            }
+
             return new LoginResult(true, "Account created successfully! You can now login.");
 
         } catch (Exception e) {
@@ -68,7 +108,7 @@ public class UniversalAuthService {
             }
 
             User user = userOpt.get();
-            System.out.println("✅ User found: " + email);
+            System.out.println("✅ User found: " + email + " (Type: " + user.getClass().getSimpleName() + ")");
 
             String storedPassword = user.getPassword();
             if (storedPassword == null || !storedPassword.equals(password)) {
