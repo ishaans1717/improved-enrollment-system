@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration</title>
+    <link rel="stylesheet" href="../styles/course_search.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- The page header -->
+    <header>
+        <div class="top-left">
+            <img src="../assets/logo_isu.png" alt="ISU logo" style="width: 50px;">
+            <span>Course Registration</span>
+        </div>
+
+        <div class="top-right">
+            <div class="dropdown-container">
+                <span class="student-details">Aaliyah <span class="symbol">▼</span></span>
+                <div class="dropdown-menu">
+                    <div class="dropdown-header">Student Profile</div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Full Name</span>
+                        <span class="dropdown-value">Aaliyah Thomas</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Date of Birth</span>
+                        <span class="dropdown-value">Oct 13, 2001</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">GPA</span>
+                        <span class="dropdown-value">3.85</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Major</span>
+                        <span class="dropdown-value">Computer Science</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Student ID</span>
+                        <span class="dropdown-value">20235501</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <main class="main-section main-course">
+
+        <!-- The left section of page -->
+
+        <section class="options">
+            <button class="option-btn" onclick="window.location.href='home_page.html'">🏠 Home</button>
+            <button class="option-btn">👤 Profile</button>
+            <button class="option-btn">📘 Register</button>
+            <button class="option-btn">📊 Degree Progress</button>
+            <button class="option-btn">⭐ Recommendations</button>
+        </section>
+
+        <div class="main-text">
+
+        <!-- Middle section of page -->
+        <section class="middle-section mid">
+
+            <div class="search-area">
+                <h1>Search Classes</h1>
+                <input type="text" name="class-search" 
+                class="class-search" placeholder="Search by course, subject, professor...">
+                <button class="main-btn">Search</button>
+            </div>
+            <h2 style="margin-bottom: 15px;">3 Results</h2>
+
+            <div class="results">
+                        <div class="result-block">
+                            <div class="logo-result">IT</div>
+                            <div class="class-result-info">
+                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
+                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
+                            </div>
+                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
+                                <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
+                        </div>
+                        <div class="result-block">
+                            <div class="logo-result">IT</div>
+                            <div class="class-result-info">
+                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
+                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
+                            </div>
+                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
+                            <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
+                        </div>
+                        <div class="result-block">
+                            <div class="logo-result">IT</div>
+                            <div class="class-result-info">
+                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
+                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
+                            </div>
+                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
+                                <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
+                        </div>
+            </div>
+
+        </section>
+
+        <!-- Right section of page -->
+        <section class="right-section right">
+
+            <div class="registration-cart">
+                <h3>My Registration Cart</h3>
+
+                <div class="cart-block">
+                    <div class="cart-class">
+                        <p class="title">IT 326 Principles of Software Engineering</p>
+                        <p class="text">T TH 2:00 PM - 3:15 PM</p>
+                    </div>
+                    <span> > </span>
+                </div>
+
+                <div class="cart-block">
+                    <div class="cart-class">
+                        <p class="title">IT 383 Principles of Operating Systems</p>
+                        <p class="text">M W 3:35 PM - 4:50 PM</p>
+                    </div>
+                    <span> > </span>
+                </div>
+
+                <button class="main-btn">Submit Registration</button>
+            </div>
+
+           
+            <div class="schedule-block">
+                <h3>Weekly Schedule</h3>
+                <ul class="weekly">
+                  <li><strong>Monday:</strong> IT 355 - 9:00am, IT 386 - 11:00am</li>
+                  <li><strong>Tuesday:</strong> IT 326 - 10:00am</li>
+                  <li><strong>Wednesday:</strong> IT 355 - 8:00am, IT 386 - 1:00pm</li>
+                  <li><strong>Thursday:</strong> IT 326 - 9:00am</li>
+                  <li><strong>Friday:</strong> IT 355 - 10:00am, IT 386 - 2:00pm</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <section class="card quick-actions">
+  <h2>Quick Actions</h2>
+  <p class="card-subtitle">Jump to common tasks</p>
+
+  <div class="quick-actions-grid">
+    <button class="quick-action">
+      <span class="qa-icon">⚠️</span>
+      <span class="qa-text">View Holds</span>
+    </button>
+
+    <button class="quick-action">
+      <span class="qa-icon">🎓</span>
+      <span class="qa-text">Degree Progress</span>
+    </button>
+
+    <button class="quick-action">
+      <span class="qa-icon">📅</span>
+      <span class="qa-text">Advisor Appointment</span>
+    </button>
+
+    <button class="quick-action">
+      <span class="qa-icon">💳</span>
+      <span class="qa-text">View Bill</span>
+    </button>
+
+    <button class="quick-action">
+      <span class="qa-icon">📄</span>
+      <span class="qa-text">Unofficial Transcript</span>
+    </button>
+
+    <button class="quick-action">
+      <span class="qa-icon">🕒</span>
+      <span class="qa-text">Registration Dates</span>
+    </button>
+  </div>
+</section>
+
+    </div>
+
+    </main>
+</body>
+</html>
