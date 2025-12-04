@@ -12,7 +12,8 @@ public interface WaitlistRepository extends JpaRepository<Waitlist, Long> {
 
     List<Waitlist> findByCourseIdOrderByPositionAsc(Long courseId);
     List<Waitlist> findByStudentId(Long studentId);
-    Optional<Waitlist> findByStudentIdAndCourseIdAndStatus(Long studentId, Long courseId, String status);
 
+    Optional<Waitlist> findByStudentIdAndCourseIdAndStatus(Long studentId, Long courseId, String status);
     long countByCourseIdAndStatus(Long courseId, String status);
+    List<Waitlist> findByCourseIdAndStatus(Long courseId, String status);
 }

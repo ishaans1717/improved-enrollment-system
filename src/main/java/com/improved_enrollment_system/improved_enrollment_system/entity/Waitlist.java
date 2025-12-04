@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-
 @Entity
 @Table(name = "waitlist")
 @Data
@@ -34,7 +33,7 @@ public class Waitlist {
     private Integer position;
 
     @Column(name = "status")
-    private String status; // "WAITING", "ENROLLED", "EXPIRED", "REMOVED"
+    private String status; //"WAITING", "ENROLLED", "EXPIRED", "REMOVED"
 
     @PrePersist
     protected void onCreate() {
