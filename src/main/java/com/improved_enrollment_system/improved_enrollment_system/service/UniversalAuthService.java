@@ -2,17 +2,15 @@ package com.improved_enrollment_system.improved_enrollment_system.service;
 
 import com.improved_enrollment_system.improved_enrollment_system.dto.LoginResult;
 import com.improved_enrollment_system.improved_enrollment_system.dto.LogoutResult;
-import com.improved_enrollment_system.improved_enrollment_system.entity.Administrator;
-import com.improved_enrollment_system.improved_enrollment_system.entity.Advisor;
 import com.improved_enrollment_system.improved_enrollment_system.entity.Student;
 import com.improved_enrollment_system.improved_enrollment_system.entity.User;
 import com.improved_enrollment_system.improved_enrollment_system.entity.UserSession;
+import com.improved_enrollment_system.improved_enrollment_system.repository.StudentRepository;
 import com.improved_enrollment_system.improved_enrollment_system.repository.UserRepository;
 import com.improved_enrollment_system.improved_enrollment_system.repository.UserSessionRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -21,60 +19,67 @@ public class UniversalAuthService {
 
     private final UserRepository userRepository;
     private final UserSessionRepository sessionRepository;
+    private final StudentRepository studentRepository;
 
     public UniversalAuthService(UserRepository userRepository,
-                                UserSessionRepository sessionRepository) {
+                                UserSessionRepository sessionRepository,
+                                StudentRepository studentRepository) {
         this.userRepository = userRepository;
         this.sessionRepository = sessionRepository;
+        this.studentRepository = studentRepository;
     }
 
     public LoginResult createAccount(String username, String password, String email, String userType) {
         try {
-            if (username == null || username.isBlank()) {
-                return new LoginResult(false, "Username is required");
-            }
-            if (email == null || email.isBlank()) {
-                return new LoginResult(false, "Email is required");
-            }
-            if (password == null || password.isBlank()) {
-                return new LoginResult(false, "Password is required");
-            }
-
             Optional<User> existingByEmail = userRepository.findByEmail(email);
             if (existingByEmail.isPresent()) {
                 return new LoginResult(false, "Email already registered");
             }
-            User newUser = createUserForType(userType);
-            newUser.setUsername(username);
-            newUser.setPassword(password);
-            newUser.setEmail(email);
-            newUser.setRole(userType != null ? userType.toUpperCase() : "USER");
 
-            userRepository.save(newUser);
+            Student student = new Student();
+            student.setUsername(username);
+            student.setEmail(email);
+            student.setPassword(password);
+            student.setGpa(0.0);
+            student.setMajor("Undeclared");
+            student.setStudYear("Freshman");
 
-            LoginResult result = new LoginResult(true, "Account created! You can now login.");
-            result.setUserId(newUser.getId());
-            result.setUsername(newUser.getUsername());
-            return result;
+            studentRepository.save(student);
+
+            System.out.println("✅ Account created: " + email);
+            return new LoginResult(true, "Account created successfully! You can now login.");
+
         } catch (Exception e) {
+            System.err.println("❌ Error creating account: " + e.getMessage());
+            e.printStackTrace();
             return new LoginResult(false, "Error: " + e.getMessage());
         }
     }
 
     public LoginResult login(String email, String password) {
         try {
+            System.out.println("🔍 Login attempt for: " + email);
+
             Optional<User> userOpt = userRepository.findByEmail(email);
 
             if (!userOpt.isPresent()) {
-                return new LoginResult(false, "User not found");
+                System.out.println("❌ User not found: " + email);
+                return new LoginResult(false, "Email not found. Please create an account.");
             }
 
             User user = userOpt.get();
-            if (password == null || !password.equals(user.getPassword())) {
-                return new LoginResult(false, "Invalid credentials");
+            System.out.println("✅ User found: " + email);
+
+            String storedPassword = user.getPassword();
+            if (storedPassword == null || !storedPassword.equals(password)) {
+                System.out.println("❌ Wrong password for: " + email);
+                return new LoginResult(false, "Incorrect password");
             }
 
-            deactivateActiveSessions(user);
+            System.out.println("✅ Password correct for: " + email);
+
+            closeExistingSessions(user.getId());
+
             String token = UUID.randomUUID().toString();
 
             UserSession session = new UserSession();
@@ -84,6 +89,10 @@ public class UniversalAuthService {
             session.setIsActive(true);
             sessionRepository.save(session);
 
+            System.out.println("✅ Session created: " + token);
+
+            String userType = determineUserType(user);
+            System.out.println("✅ User type: " + userType);
 
             LoginResult result = new LoginResult(true, "Login successful!");
             result.setSessionToken(token);
@@ -93,6 +102,8 @@ public class UniversalAuthService {
             return result;
 
         } catch (Exception e) {
+            System.err.println("❌ Login error: " + e.getMessage());
+            e.printStackTrace();
             return new LoginResult(false, "Login failed: " + e.getMessage());
         }
     }
@@ -111,6 +122,7 @@ public class UniversalAuthService {
             sessionRepository.save(session);
 
             return new LogoutResult(true, "Logged out successfully!");
+
         } catch (Exception e) {
             return new LogoutResult(false, "Logout failed: " + e.getMessage());
         }
@@ -132,35 +144,13 @@ public class UniversalAuthService {
         return determineUserType(user);
     }
 
-    private User createUserForType(String userType) {
-        if (userType == null) {
-            return new User();
-        }
-
-        switch (userType.toUpperCase()) {
-            case "STUDENT":
-                return new Student();
-            case "ADVISOR":
-                return new Advisor();
-            case "ADMINISTRATOR":
-                return new Administrator();
-            default:
-                return new User();
-        }
-    }
-
-    private void deactivateActiveSessions(User user) {
-        List<UserSession> activeSessions = sessionRepository.findByUserIdAndIsActiveTrue(user.getId());
-        if (activeSessions.isEmpty()) {
-            return;
-        }
-
-        LocalDateTime now = LocalDateTime.now();
+    private void closeExistingSessions(Long userId) {
+        var activeSessions = sessionRepository.findByUserIdAndIsActive(userId, true);
         for (UserSession session : activeSessions) {
             session.setIsActive(false);
-            session.setLogoutTime(now);
+            session.setLogoutTime(LocalDateTime.now());
+            sessionRepository.save(session);
         }
-        sessionRepository.saveAll(activeSessions);
     }
 
     private String determineUserType(User user) {
@@ -178,17 +168,7 @@ public class UniversalAuthService {
     }
 
     private String getUserDisplayName(User user) {
-        if (user.getUsername() != null && !user.getUsername().isBlank()) {
-            return user.getUsername();
-        }
-
-        try {
-            java.lang.reflect.Method method = user.getClass().getMethod("getName");
-            Object result = method.invoke(user);
-            if (result != null) return result.toString();
-        } catch (Exception e) {
-        }
-
-        return determineUserType(user) + "_" + user.getId();
+        return user.getUsername();
     }
+
 }
