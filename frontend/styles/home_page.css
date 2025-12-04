@@ -43,15 +43,19 @@ header {
 
 .main-section {
     display: flex;
-    height: 90vh;
+    height: 100vh;
     width: 100vw;
     margin: 0;
+    align-items: stretch;
+    overflow: hidden;
 }
 
 .options {
     display: flex;
     flex-direction: column;
     width: 15%;
+    min-width: 180px;
+    max-width: 240px;
     padding: 10px;
     height: 100%;
     border-right: 2px solid #e5e7eb;
@@ -85,10 +89,12 @@ header {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    flex: 1;
+    flex: 1 1 0;
+    min-width: 0;
     justify-content: space-evenly;
     padding: 20px;
-    height: 100%;
+    height: 90%;
+    overflow-y: auto;
 }
 
 .search-area {
@@ -169,11 +175,12 @@ header {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    flex: 1;
+    flex: 1 1 0;
+    min-width: 0;
     justify-content: space-evenly;
     padding: 20px;
-    height: 100%;
-
+    height: 90%;
+    overflow-y: auto;
 }
 
 .registration-cart {
@@ -221,7 +228,10 @@ header {
 
 .main-text {
     display: flex;
-    justify-content: space-evenly;
+    flex: 1 1 0;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
 }
 
 .weekly-list {
@@ -256,37 +266,6 @@ header {
   border-radius: 12px;
   padding: 20px 22px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-/* Quick Actions layout */
-.quick-actions-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.quick-action {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 10px;
-  border-radius: 999px;
-  border: none;
-  background: #f7f7f7;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.08s ease;
-}
-
-.quick-action:hover {
-  background: #ffe5e5;            /* soft red */
-  transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-}
-
-.qa-icon {
-  font-size: 1rem;
 }
 
 .card-subtitle {
@@ -379,6 +358,9 @@ header {
 
 .dropdown-row:last-child {
     margin-bottom: 0;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
 }
 
 .dropdown-container:hover .dropdown-menu,
@@ -386,4 +368,97 @@ header {
 .student-details:hover + .dropdown-menu {
     display: block;
 }
+
+.schedule-panel {
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 4px 4px 4px rgba(0,0,0,0.38);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 420px;         
+  overflow-y: auto;
+}
+
+.schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.schedule-term {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.schedule-item {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.schedule-day-pill {
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.schedule-info {
+  flex: 1;
+}
+
+.schedule-course {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.schedule-time {
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 10px 0;
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(239,68,68,0.10);
+    transition: background 0.18s, box-shadow 0.18s;
+}
+.logout-btn:hover {
+    background: #dc2626;
+    box-shadow: 0 4px 16px rgba(239,68,68,0.16);
+}
+
+.dropdown-row .logout-btn {
+    background: #ef4444;
+    box-shadow: none;
+    margin: 0;
+    border-radius: 8px;
+}
+
 

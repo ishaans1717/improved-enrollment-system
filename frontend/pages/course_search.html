@@ -41,6 +41,9 @@
                         <span class="dropdown-label">Student ID</span>
                         <span class="dropdown-value">20235501</span>
                     </div>
+                    <div class="dropdown-row">
+                        <button class="logout-btn" onclick="window.location.href='login.html'">Log Out</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -50,7 +53,6 @@
     <main class="main-section main-course">
 
         <!-- The left section of page -->
-
         <section class="options">
             <button class="option-btn" onclick="window.location.href='home_page.html'">🏠 Home</button>
             <button class="option-btn" onclick="window.location.href='course_search.html'" disabled>📘 Register</button>
@@ -65,41 +67,16 @@
 
             <div class="search-area">
                 <h1>Search Classes</h1>
-                <input type="text" name="class-search" 
-                class="class-search" placeholder="Search by course, subject, professor...">
-                <button class="main-btn">Search</button>
+                <input type="text" name="class-search" id="search-input" class="class-search" placeholder="Search by course, subject, professor...">
+                <button class="main-btn" id="search-btn">Search</button>
+                <p id="search-error" class="error-text"></p>
             </div>
-            <h2 style="margin-bottom: 15px;">3 Results</h2>
 
-            <div class="results">
-                        <div class="result-block">
-                            <div class="logo-result">IT</div>
-                            <div class="class-result-info">
-                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
-                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
-                            </div>
-                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
-                                <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
-                        </div>
-                        <div class="result-block">
-                            <div class="logo-result">IT</div>
-                            <div class="class-result-info">
-                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
-                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
-                            </div>
-                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
-                            <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
-                        </div>
-                        <div class="result-block">
-                            <div class="logo-result">IT</div>
-                            <div class="class-result-info">
-                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
-                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
-                            </div>
-                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
-                                <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
-                        </div>
-            </div>
+            <h2 style="margin: 20px 0 15px;">
+                <span id="result-count">0</span> Results
+            </h2>
+
+            <div class="results" id="results-container"></div>
 
         </section>
 
@@ -109,78 +86,27 @@
             <div class="registration-cart">
                 <h3>My Registration Cart</h3>
 
-                <div class="cart-block">
-                    <div class="cart-class">
-                        <p class="title">IT 326 Principles of Software Engineering</p>
-                        <p class="text">T TH 2:00 PM - 3:15 PM</p>
-                    </div>
-                    <span> > </span>
-                </div>
+                <div id="cart-container"></div>
 
-                <div class="cart-block">
-                    <div class="cart-class">
-                        <p class="title">IT 383 Principles of Operating Systems</p>
-                        <p class="text">M W 3:35 PM - 4:50 PM</p>
-                    </div>
-                    <span> > </span>
-                </div>
-
-                <button class="main-btn">Submit Registration</button>
+                <button id="submit-btn" class="main-btn">Submit Registration</button>
             </div>
 
-           
-            <div class="schedule-block">
-                <h3>Weekly Schedule</h3>
-                <ul class="weekly">
-                  <li><strong>Monday:</strong> IT 355 - 9:00am, IT 386 - 11:00am</li>
-                  <li><strong>Tuesday:</strong> IT 326 - 10:00am</li>
-                  <li><strong>Wednesday:</strong> IT 355 - 8:00am, IT 386 - 1:00pm</li>
-                  <li><strong>Thursday:</strong> IT 326 - 9:00am</li>
-                  <li><strong>Friday:</strong> IT 355 - 10:00am, IT 386 - 2:00pm</li>
-                </ul>
+            <div class="schedule-panel">
+                <div class="schedule-header">
+                    <h3>Course Schedule</h3>
+                    <span class="schedule-term">Spring 2026</span>
+                </div>
+
+                <div class="schedule-list" id="schedule-list"></div>
             </div>
 
         </section>
 
-        <section class="card quick-actions">
-  <h2>Quick Actions</h2>
-  <p class="card-subtitle">Jump to common tasks</p>
-
-  <div class="quick-actions-grid">
-    <button class="quick-action">
-      <span class="qa-icon">⚠️</span>
-      <span class="qa-text">View Holds</span>
-    </button>
-
-    <button class="quick-action">
-      <span class="qa-icon">🎓</span>
-      <span class="qa-text">Degree Progress</span>
-    </button>
-
-    <button class="quick-action">
-      <span class="qa-icon">📅</span>
-      <span class="qa-text">Advisor Appointment</span>
-    </button>
-
-    <button class="quick-action">
-      <span class="qa-icon">💳</span>
-      <span class="qa-text">View Bill</span>
-    </button>
-
-    <button class="quick-action">
-      <span class="qa-icon">📄</span>
-      <span class="qa-text">Unofficial Transcript</span>
-    </button>
-
-    <button class="quick-action">
-      <span class="qa-icon">🕒</span>
-      <span class="qa-text">Registration Dates</span>
-    </button>
-  </div>
-</section>
-
-    </div>
+        </div>
 
     </main>
+
+    <!-- JS logic for cart and scheudle -->
+    <script src="../js/course_search.js" defer></script>
 </body>
 </html>
