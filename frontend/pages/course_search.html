@@ -53,7 +53,6 @@
     <main class="main-section main-course">
 
         <!-- The left section of page -->
-
         <section class="options">
             <button class="option-btn" onclick="window.location.href='home_page.html'">🏠 Home</button>
             <button class="option-btn" onclick="window.location.href='course_search.html'" disabled>📘 Register</button>
@@ -68,41 +67,16 @@
 
             <div class="search-area">
                 <h1>Search Classes</h1>
-                <input type="text" name="class-search" 
-                class="class-search" placeholder="Search by course, subject, professor...">
-                <button class="main-btn">Search</button>
+                <input type="text" name="class-search" id="search-input" class="class-search" placeholder="Search by course, subject, professor...">
+                <button class="main-btn" id="search-btn">Search</button>
+                <p id="search-error" class="error-text"></p>
             </div>
-            <h2 style="margin-bottom: 15px;">3 Results</h2>
 
-            <div class="results">
-                        <div class="result-block">
-                            <div class="logo-result">IT</div>
-                            <div class="class-result-info">
-                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
-                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
-                            </div>
-                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
-                                <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
-                        </div>
-                        <div class="result-block">
-                            <div class="logo-result">IT</div>
-                            <div class="class-result-info">
-                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
-                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
-                            </div>
-                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
-                            <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
-                        </div>
-                        <div class="result-block">
-                            <div class="logo-result">IT</div>
-                            <div class="class-result-info">
-                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
-                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
-                            </div>
-                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
-                                <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
-                        </div>
-            </div>
+            <h2 style="margin: 20px 0 15px;">
+                <span id="result-count">0</span> Results
+            </h2>
+
+            <div class="results" id="results-container"></div>
 
         </section>
 
@@ -112,73 +86,27 @@
             <div class="registration-cart">
                 <h3>My Registration Cart</h3>
 
-                <div class="cart-block">
-                    <div class="cart-class">
-                        <p class="title">IT 326 Principles of Software Engineering</p>
-                        <p class="text">T TH 2:00 PM - 3:15 PM</p>
-                    </div>
-                    <span> > </span>
-                </div>
+                <div id="cart-container"></div>
 
-                <div class="cart-block">
-                    <div class="cart-class">
-                        <p class="title">IT 383 Principles of Operating Systems</p>
-                        <p class="text">M W 3:35 PM - 4:50 PM</p>
-                    </div>
-                    <span> > </span>
-                </div>
-
-                <button class="main-btn">Submit Registration</button>
+                <button id="submit-btn" class="main-btn">Submit Registration</button>
             </div>
 
             <div class="schedule-panel">
-            <div class="schedule-header">
-              <h3>Course Schedule</h3>
-              <span class="schedule-term">Spring 2026</span>
+                <div class="schedule-header">
+                    <h3>Course Schedule</h3>
+                    <span class="schedule-term">Spring 2026</span>
+                </div>
+
+                <div class="schedule-list" id="schedule-list"></div>
             </div>
-
-            <div class="schedule-list">
-              <div class="schedule-item">
-                <div class="schedule-day-pill">M W</div>
-                <div class="schedule-info">
-                  <p class="schedule-course">
-                    IT 326 Principles of Software Engineering
-                  </p>
-                  <p class="schedule-time">2:00 PM – 3:15 PM • STV 240</p>
-                </div>
-              </div>
-
-              <div class="schedule-item">
-                <div class="schedule-day-pill">M W</div>
-                <div class="schedule-info">
-                  <p class="schedule-course">
-                    IT 383 Principles of Operating Systems
-                  </p>
-                  <p class="schedule-time">3:35 PM – 4:50 PM • STV 108</p>
-                </div>
-              </div>
-
-              <div class="schedule-item">
-                <div class="schedule-day-pill">T TH</div>
-                <div class="schedule-info">
-                  <p class="schedule-course">
-                    IT 355 Secure Software Development
-                  </p>
-                  <p class="schedule-time">2:00 PM – 3:15 PM • ITC 101</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-           
-            
 
         </section>
 
-     
-
-    </div>
+        </div>
 
     </main>
+
+    <!-- JS logic for cart and scheudle -->
+    <script src="../js/course_search.js" defer></script>
 </body>
 </html>

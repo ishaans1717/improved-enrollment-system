@@ -426,6 +426,8 @@ header {
     align-items: center;
     justify-content: center;
     border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
 }
 
 .results {
@@ -525,3 +527,115 @@ header {
     border-radius: 8px;
 }
 
+.error-text {
+  font-size: 0.8rem;
+  color: #b91c1c;
+  margin-top: 4px;
+}
+
+.input-error {
+  border-color: #b91c1c;
+  background-color: #fee2e2;
+}
+
+.add-to-cart-btn {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.add-to-cart-btn:hover {
+  background: #dc2626;
+}
+
+.schedule-item {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.schedule-day-pill {
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.schedule-info .schedule-course {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.schedule-info .schedule-time {
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.remove-cart-btn {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 10px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    margin-top: 8px;
+    transition: background 0.18s, box-shadow 0.18s;
+}
+.remove-cart-btn:hover {
+    background: #dc2626;
+    box-shadow: 0 6px 16px rgba(239,68,68,0.15);
+}
+
+.result-title {
+    font-size: 1.08rem;
+    color: #ef4444;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.date {
+    font-size: 0.98rem;
+    color: #111827;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.credit-amount {
+    font-size: 0.95rem;
+    color: #4b5563;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.class-result-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cart-class .title {
+    font-size: 1.08rem;
+    color: #ef4444;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
