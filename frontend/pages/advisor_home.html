@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advisor Dashboard</title>
+    <link rel="stylesheet" href="../styles/advisor_home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Page header -->
+    <header>
+        <div class="top-left">
+            <img src="../assets/logo_isu.png" alt="ISU logo" style="width: 50px;">
+            <span>Advisor Dashboard</span>
+        </div>
+
+        <div class="top-right">
+            <div class="dropdown-container">
+                <span class="student-details">Dr. Smith <span class="symbol">▼</span></span>
+                <div class="dropdown-menu">
+                    <div class="dropdown-header">Advisor Profile</div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Full Name</span>
+                        <span class="dropdown-value">Dr. Alex Smith</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Department</span>
+                        <span class="dropdown-value">School of IT</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Office</span>
+                        <span class="dropdown-value">Old Union 305B</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Office Hours</span>
+                        <span class="dropdown-value">T/Th 1:00–3:00 PM</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Email</span>
+                        <span class="dropdown-value">asmith@ilstu.edu</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-section">
+
+        <section class="options">
+            <button class="option-btn">👥 Advise Students</button>
+            <button class="option-btn">📋 View Student Plans</button>
+            <button class="option-btn">📅 Appointments</button>
+            <button class="option-btn">🔔 Notifications</button>
+        </section>
+
+        <div class="main-text">
+            <section class="middle-section">
+
+                <section class="advisor-overview">
+                    <div class="overview-item">
+                        <span class="overview-label">Total Advisees</span>
+                        <span class="overview-value">24</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="overview-label">Appointments Today</span>
+                        <span class="overview-value">3</span>
+                    </div>
+                    <div class="overview-item">
+                        <span class="overview-label">Students Flagged</span>
+                        <span class="overview-value">2</span>
+                    </div>
+                </section>
+
+                <!-- Search students -->
+                <div class="search-area">
+                    <h1>Search Students</h1>
+                    <input type="text" name="student-search" 
+                           class="class-search" placeholder="Search by name, ID, or major...">
+                    <button class="main-btn">Search</button>
+                </div>
+
+                <!-- Upcoming appointments  -->
+                <section class="summary-card">
+                    <div class="summary-row">
+                        <h3>Upcoming Appointments</h3>
+                        <p class="summary-subtitle">3 appointments scheduled for today.</p>
+                        <ul class="summary-list">
+                            <li>9:00 AM – Aaliyah Johnson (IT 355)</li>
+                            <li>11:30 AM – Chris Lee (IT 386)</li>
+                            <li>2:00 PM – Maria Gomez (IT 326)</li>
+                        </ul>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-row">
+                        <h3>Student Alerts</h3>
+                        <p class="summary-subtitle">2 students flagged for review.</p>
+                        <ul class="summary-list">
+                            <li>Chris Lee – At risk of probation.</li>
+                            <li>Maria Gomez – Close to credit limit.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Advisor notes -->
+                <section class="card advisor-notes">
+                    <h3>Notes for Today</h3>
+                    <ul>
+                        <li>Confirm graduation plan with Aaliyah Johnson.</li>
+                        <li>Discuss internship options for Maria Gomez.</li>
+                        <li>Review major change request for Chris Lee.</li>
+                    </ul>
+                </section>
+
+            </section>
+
+            <!-- Right column -->
+            <section class="right-section">
+
+                <div class="advisee-section">
+                    <div class="advisee-header-row">
+                        <h3>Advisee List</h3>
+                        <span class="today-chip">Today • Wednesday</span>
+                    </div>
+
+                    <div class="advisee-list">
+                        <div class="advisee-card today">
+                            <h4>Monday</h4>
+                            <p>Aaliyah Johnson – IT 355</p>
+                            <p>Chris Lee – IT 386</p>
+                        </div>
+
+                        <div class="advisee-card">
+                            <h4>Tuesday</h4>
+                            <p>Maria Gomez – IT 326</p>
+                        </div>
+
+                        <div class="advisee-card">
+                            <h4>Wednesday</h4>
+                            <p>Aaliyah Johnson – IT 355</p>
+                            <p>Chris Lee – IT 386</p>
+                        </div>
+
+                        <div class="advisee-card">
+                            <h4>Thursday</h4>
+                            <p>Maria Gomez – IT 326</p>
+                        </div>
+
+                        <div class="advisee-card">
+                            <h4>Friday</h4>
+                            <p>Aaliyah Johnson – IT 355</p>
+                            <p>Chris Lee – IT 386</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick actions -->
+                <section class="card quick-actions">
+                    <h2>Quick Actions</h2>
+                    <p class="card-subtitle">Jump to common tasks</p>
+
+                    <div class="quick-actions-grid">
+                        <button class="quick-action">
+                            <span class="qa-icon">📅</span>
+                            <span class="qa-text">Today's Schedule</span>
+                        </button>
+
+                        <button class="quick-action">
+                            <span class="qa-icon">⚠️</span>
+                            <span class="qa-text">Student Alerts</span>
+                        </button>
+
+                        <button class="quick-action">
+                            <span class="qa-icon">✉️</span>
+                            <span class="qa-text">Email Advisees</span>
+                        </button>
+
+                        <button class="quick-action">
+                            <span class="qa-icon">✅</span>
+                            <span class="qa-text">Approve Plans</span>
+                        </button>
+
+                        <button class="quick-action">
+                            <span class="qa-icon">➕</span>
+                            <span class="qa-text">New Appointment</span>
+                        </button>
+
+                        <button class="quick-action">
+                            <span class="qa-icon">📊</span>
+                            <span class="qa-text">Progress Reports</span>
+                        </button>
+                    </div>
+                </section>
+
+            </section>
+        </div>
+    </main>
+</body>
+</html>
