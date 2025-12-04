@@ -116,7 +116,7 @@
                 localStorage.setItem('sessionToken', data.sessionToken);
                 localStorage.setItem('userId', data.userId);
                 localStorage.setItem('username', data.username || email);
-                localStorage.setItem('username', data.username);
+
                 // Get user type
                 const userType = await getUserType(data.sessionToken);
                 localStorage.setItem('userType', userType);
@@ -125,20 +125,20 @@
 
                 // Redirect based on user type after 1 second
                 setTimeout(() => {
-                    if (userType === 'STUDENT') {
-                        alert('Student login successful! (Redirecting to student dashboard)');
-                         window.location.href = 'home_page.html';
-                    } else if (userType === 'ADVISOR') {
-                        alert('Advisor login successful! (Redirecting to advisor dashboard)');
-                         window.location.href = 'advisor_home.html';
-                    } else if (userType === 'ADMINISTRATOR') {
-                        alert('Admin login successful! (Redirecting to admin dashboard)');
-                         window.location.href = 'admin-dashboard.html';
-                    } else {
-                        alert('Login successful!');
-                        window.location.href = 'home_page.html';
-                    }
-                }, 1000);
+                if (userType === 'STUDENT') {
+                    console.log('✅ Redirecting to student dashboard');
+                    window.location.href = 'home_page.html';
+                } else if (userType === 'ADVISOR') {
+                    console.log('✅ Redirecting to advisor dashboard');
+                    window.location.href = 'admin_home.html';
+                } else if (userType === 'ADMINISTRATOR') {
+                    console.log('✅ Redirecting to admin dashboard');
+                    window.location.href = 'admin_home.html';
+                } else {
+                    console.log('⚠️ Unknown user type, redirecting to home');
+                    window.location.href = 'home_page.html';
+                }
+            }, 1000);
 
             } else {
                 // ❌ Login failed

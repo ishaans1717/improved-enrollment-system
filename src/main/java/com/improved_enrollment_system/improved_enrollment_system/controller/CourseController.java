@@ -201,7 +201,7 @@ public class CourseController {
 
 
     @PostMapping
-    public Course createCourse(@RequestParam Long catalogId, @RequestBody Course course) {
+    public Course createCourse(@RequestParam(required = false) Long catalogId, @RequestBody Course course) {
         return courseService.createCourse(catalogId, course);
     }
 

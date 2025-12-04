@@ -1,276 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Administrator Portal</title>
-    <link rel="stylesheet" href="../styles/admin_home.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Page header -->
-    <header>
-      <div class="top-left">
-        <img src="../assets/logo_isu.png" alt="ISU logo" class="isu-logo" />
-        <span>Administrator Portal</span>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administrator Portal</title>
+  <link rel="stylesheet" href="../styles/admin_home.css" />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+  />
+</head>
+<body>
 
-      <div class="top-right">
-        <div class="dropdown-container">
+<header>
+  <div class="top-left">
+    <img src="../assets/logo_isu.png" alt="ISU logo" class="isu-logo" />
+    <span>Administrator Portal</span>
+  </div>
+
+  <div class="top-right">
+    <div class="dropdown-container">
           <span class="profile-pill">
             Admin <span class="symbol">▼</span>
           </span>
-          <div class="dropdown-menu">
-            <div class="dropdown-header">Administrator Profile</div>
-            <div class="dropdown-row">
-              <span class="dropdown-label">Full Name</span>
-              <span class="dropdown-value">Dr. Alex Smith</span>
-            </div>
-            <div class="dropdown-row">
-              <span class="dropdown-label">Role</span>
-              <span class="dropdown-value">System Administrator</span>
-            </div>
-            <div class="dropdown-row">
-              <span class="dropdown-label">Department</span>
-              <span class="dropdown-value">Registrar / School of IT</span>
-            </div>
-            <div class="dropdown-row">
-              <span class="dropdown-label">Email</span>
-              <span class="dropdown-value">admin@ilstu.edu</span>
-            </div>
-            <div class="dropdown-row">
-              <button
-                class="logout-btn"
-                onclick="window.location.href='login.html'"
-              >
-                Log Out
-              </button>
-            </div>
-          </div>
+      <div class="dropdown-menu">
+        <div class="dropdown-header">Administrator Profile</div>
+        <div class="dropdown-row">
+          <span class="dropdown-label">Full Name</span>
+          <span class="dropdown-value">Dr. Alex Smith</span>
+        </div>
+        <div class="dropdown-row">
+          <span class="dropdown-label">Role</span>
+          <span class="dropdown-value">System Administrator</span>
+        </div>
+        <div class="dropdown-row">
+          <span class="dropdown-label">Department</span>
+          <span class="dropdown-value">Registrar / School of IT</span>
+        </div>
+        <div class="dropdown-row">
+          <span class="dropdown-label">Email</span>
+          <span class="dropdown-value">admin@ilstu.edu</span>
+        </div>
+        <div class="dropdown-row">
+          <button
+                  class="logout-btn"
+                  onclick="window.location.href='login.html'"
+          >
+            Log Out
+          </button>
         </div>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
 
-    <main class="main-section">
-      <!-- Sidebar -->
-      <aside class="options">
-        <button
-          class="option-btn"
-          onclick="window.location.href='admin_home.html'"
-        >
-          📊 Dashboard
-        </button>
-        <button class="option-btn active">
-          📚 Manage Courses
-        </button>
-        <button class="option-btn">
-          👩‍🎓 Manage Students
-        </button>
-        <button class="option-btn">
-          👨‍🏫 Manage Instructors
-        </button>
-      </aside>
+<main class="main-section">
+  <!-- Sidebar -->
+  <aside class="options">
+    <button
+            class="option-btn"
+            onclick="window.location.href='admin_home.html'"
+    >
+      📊 Dashboard
+    </button>
+    <button class="option-btn active">
+      📚 Manage Courses
+    </button>
+    <button class="option-btn">
+      👩‍🎓 Manage Students
+    </button>
+    <button class="option-btn">
+      👨‍🏫 Manage Instructors
+    </button>
+  </aside>
 
-      <div class="main-text">
-        <section class="middle-section">
-          <section class="search-card">
-            <h1>Course Listings</h1>
-            <p class="search-subtitle">
-              View and manage all courses available for registration.
-            </p>
-            <div class="search-row">
+  <div class="main-text">
+    <section class="middle-section">
+      <section class="search-card">
+        <h1>Course Listings</h1>
+        <p class="search-subtitle">
+          View and manage all courses available for registration.
+        </p>
+        <div class="search-row">
+          <input
+                  type="text"
+                  name="course-filter"
+                  class="class-search"
+                  placeholder="Filter by subject, course code, or title..."
+          />
+          <button class="main-btn">Filter</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-header-row">
+          <h2>Current Courses</h2>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="card-meta">Loading courses...</span>
+            <button onclick="refreshCourses()" class="main-btn" style="height: 32px; padding: 0 14px; font-size: 0.85rem;">
+              🔄 Refresh
+            </button>
+          </div>
+        </div>
+
+        <table class="course-table">
+          <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Course Code</th>
+            <th>Title</th>
+            <th>Credits</th>
+            <th>Capacity</th>
+            <th>Enrolled</th>
+            <th>Available</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td colspan="7" style="text-align: center; padding: 20px;">
+              Loading courses...
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+
+    <section class="right-section">
+      <section class="card">
+        <h3>Add New Course</h3>
+        <p class="card-subtitle">
+          Fill out the form to add a new course to the catalog.
+        </p>
+
+        <form class="add-course-form">
+          <div class="form-row">
+            <label for="subject">Subject *</label>
+            <input
+                    type="text"
+                    id="subject"
+                    placeholder="e.g., IT, ACC, MAT"
+                    required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="code">Course Code *</label>
+            <input
+                    type="text"
+                    id="code"
+                    placeholder="e.g., 355"
+                    required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="title">Course Title *</label>
+            <input
+                    type="text"
+                    id="title"
+                    placeholder="Secure Software Development"
+                    required
+            />
+          </div>
+
+          <div class="form-row form-row-inline">
+            <div class="field-half">
+              <label for="credits">Credits *</label>
               <input
-                type="text"
-                name="course-filter"
-                class="class-search"
-                placeholder="Filter by subject, course code, or title..."
+                      type="number"
+                      id="credits"
+                      min="1"
+                      max="6"
+                      placeholder="3"
+                      required
               />
-              <button class="main-btn">Filter</button>
             </div>
-          </section>
-
-          <section class="card">
-            <div class="card-header-row">
-              <h2>Current Courses</h2>
-              <span class="card-meta">Showing 6 courses</span>
+            <div class="field-half">
+              <label for="days">Days</label>
+              <input
+                      type="text"
+                      id="days"
+                      placeholder="M W F or T TH"
+              />
             </div>
+          </div>
 
-            <table class="course-table">
-              <thead>
-                <tr>
-                  <th>Subject</th>
-                  <th>Course Code</th>
-                  <th>Title</th>
-                  <th>Credits</th>
-                  <th>Days</th>
-                  <th>Time</th>
-                  <th>Location</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>IT</td>
-                  <td>326</td>
-                  <td>Principles of Software Engineering</td>
-                  <td>3</td>
-                  <td>T TH</td>
-                  <td>2:00 PM – 3:15 PM</td>
-                  <td>STV 240</td>
-                </tr>
-                <tr>
-                  <td>IT</td>
-                  <td>383</td>
-                  <td>Principles of Operating Systems</td>
-                  <td>3</td>
-                  <td>M W</td>
-                  <td>3:35 PM – 4:50 PM</td>
-                  <td>STV 108</td>
-                </tr>
-                <tr>
-                  <td>IT</td>
-                  <td>355</td>
-                  <td>Secure Software Development</td>
-                  <td>3</td>
-                  <td>T TH</td>
-                  <td>2:00 PM – 3:15 PM</td>
-                  <td>ITC 101</td>
-                </tr>
-                <tr>
-                  <td>ACC</td>
-                  <td>131</td>
-                  <td>Financial Accounting</td>
-                  <td>3</td>
-                  <td>M W</td>
-                  <td>11:00 AM – 12:15 PM</td>
-                  <td>CTK 201</td>
-                </tr>
-                <tr>
-                  <td>MAT</td>
-                  <td>145</td>
-                  <td>Calculus I</td>
-                  <td>4</td>
-                  <td>M W F</td>
-                  <td>9:00 AM – 9:50 AM</td>
-                  <td>STV 101</td>
-                </tr>
-                <tr>
-                  <td>MAT</td>
-                  <td>175</td>
-                  <td>Discrete Mathematics</td>
-                  <td>3</td>
-                  <td>T TH</td>
-                  <td>12:30 PM – 1:45 PM</td>
-                  <td>STV 215</td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-        </section>
-
-        <section class="right-section">
-          <section class="card">
-            <h3>Add New Course</h3>
-            <p class="card-subtitle">
-              Fill out the form to add a new course to the catalog.
-            </p>
-
-            <form class="add-course-form">
-              <div class="form-row">
-                <label for="subject">Subject</label>
-                <input
-                  type="text"
-                  id="subject"
-                  placeholder="e.g., IT, ACC, MAT"
-                />
-              </div>
-
-              <div class="form-row">
-                <label for="code">Course Code</label>
-                <input
-                  type="text"
-                  id="code"
-                  placeholder="e.g., 355"
-                />
-              </div>
-
-              <div class="form-row">
-                <label for="title">Course Title</label>
-                <input
-                  type="text"
-                  id="title"
-                  placeholder="Secure Software Development"
-                />
-              </div>
-
-              <div class="form-row form-row-inline">
-                <div class="field-half">
-                  <label for="credits">Credits</label>
-                  <input
-                    type="number"
-                    id="credits"
-                    min="1"
-                    max="6"
-                    placeholder="3"
-                  />
-                </div>
-                <div class="field-half">
-                  <label for="days">Days</label>
-                  <input
-                    type="text"
-                    id="days"
-                    placeholder="M W F or T TH"
-                  />
-                </div>
-              </div>
-
-              <div class="form-row form-row-inline">
-                <div class="field-half">
-                  <label for="time">Time</label>
-                  <input
-                    type="text"
-                    id="time"
-                    placeholder="2:00 PM – 3:15 PM"
-                  />
-                </div>
-                <div class="field-half">
-                  <label for="location">Location</label>
-                  <input
-                    type="text"
-                    id="location"
-                    placeholder="STV 240"
-                  />
-                </div>
-              </div>
-
-              <button type="submit" class="main-btn add-course-btn">
-                Add Course
-              </button>
-            </form>
-          </section>
-
-          <section class="announcement-block">
-            <h3>Admin Notes</h3>
-
-            <div class="announcement">
-              <p class="title">Registration Window</p>
-              <p class="text">
-                Spring 2026 registration opens October 21st at 8:00 AM.
-              </p>
+          <div class="form-row form-row-inline">
+            <div class="field-half">
+              <label for="time">Time</label>
+              <input
+                      type="text"
+                      id="time"
+                      placeholder="2:00 PM – 3:15 PM"
+              />
             </div>
-
-            <div class="announcement">
-              <p class="title">System Updates</p>
-              <p class="text">
-                New course validation rules will be applied after December 1st.
-              </p>
+            <div class="field-half">
+              <label for="location">Location</label>
+              <input
+                      type="text"
+                      id="location"
+                      placeholder="STV 240"
+              />
             </div>
-          </section>
-        </section>
-      </div>
-    </main>
-  </body>
-  <script src="../js/advisor_home.js" defer></script>
+          </div>
+
+          <button type="submit" class="main-btn add-course-btn">
+            Add Course
+          </button>
+        </form>
+      </section>
+
+      <section class="announcement-block">
+        <h3>Admin Notes</h3>
+
+        <div class="announcement">
+          <p class="title">Registration Window</p>
+          <p class="text">
+            Spring 2026 registration opens October 21st at 8:00 AM.
+          </p>
+        </div>
+
+        <div class="announcement">
+          <p class="title">System Updates</p>
+          <p class="text">
+            New course validation rules will be applied after December 1st.
+          </p>
+        </div>
+      </section>
+    </section>
+  </div>
+</main>
+
+
+<script src="../js/admin_home.js" defer></script>
+</body>
 </html>

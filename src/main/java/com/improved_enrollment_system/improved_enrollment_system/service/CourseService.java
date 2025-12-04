@@ -47,9 +47,11 @@ public class CourseService {
     }
 
     public Course createCourse(Long catalogId, Course course) {
-        Catalog catalog = catalogRepository.findById(catalogId)
-                .orElseThrow(() -> new RuntimeException("Catalog not found"));
-        catalog.addCourse(course);
+        if (catalogId != null) {
+            Catalog catalog = catalogRepository.findById(catalogId)
+                    .orElseThrow(() -> new RuntimeException("Catalog not found"));
+            catalog.addCourse(course);
+        }
         return courseRepository.save(course);
     }
 
