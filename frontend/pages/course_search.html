@@ -18,12 +18,12 @@
 
         <div class="top-right">
             <div class="dropdown-container">
-                <span class="student-details"><span data-user-name>Aaliyah</span> <span class="symbol">▼</span></span>
+                <span class="student-details">Aaliyah <span class="symbol">▼</span></span>
                 <div class="dropdown-menu">
                     <div class="dropdown-header">Student Profile</div>
                     <div class="dropdown-row">
                         <span class="dropdown-label">Full Name</span>
-                        <span class="dropdown-value" data-user-name>Aaliyah Thomas</span>
+                        <span class="dropdown-value">Aaliyah Thomas</span>
                     </div>
                     <div class="dropdown-row">
                         <span class="dropdown-label">Date of Birth</span>
@@ -43,7 +43,6 @@
                     </div>
                 </div>
             </div>
-            <button id="logout-btn" style="margin-left: 12px; padding: 8px 12px; border-radius: 8px; border: 1px solid #d1d5db; background: white; cursor: pointer; font-weight: 600;">Sign out</button>
         </div>
 
     </header>
@@ -66,13 +65,41 @@
 
             <div class="search-area">
                 <h1>Search Classes</h1>
-                <input type="text" name="class-search"
+                <input type="text" name="class-search" 
                 class="class-search" placeholder="Search by course, subject, professor...">
-                <button class="main-btn" id="search-button" type="button">Search</button>
+                <button class="main-btn">Search</button>
             </div>
-            <h2 id="results-count" style="margin-bottom: 15px;">Loading courses...</h2>
-            <div id="course-feedback" style="color: #b91c1c; font-weight: 600; margin-bottom: 10px; display: none;"></div>
-            <div class="results" id="course-results"></div>
+            <h2 style="margin-bottom: 15px;">3 Results</h2>
+
+            <div class="results">
+                        <div class="result-block">
+                            <div class="logo-result">IT</div>
+                            <div class="class-result-info">
+                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
+                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
+                            </div>
+                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
+                                <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
+                        </div>
+                        <div class="result-block">
+                            <div class="logo-result">IT</div>
+                            <div class="class-result-info">
+                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
+                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
+                            </div>
+                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
+                            <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
+                        </div>
+                        <div class="result-block">
+                            <div class="logo-result">IT</div>
+                            <div class="class-result-info">
+                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
+                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
+                            </div>
+                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
+                                <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
+                        </div>
+            </div>
 
         </section>
 
@@ -155,7 +182,5 @@
     </div>
 
     </main>
-    <script src="../js/api.js"></script>
-    <script src="../js/course_search.js"></script>
 </body>
 </html>

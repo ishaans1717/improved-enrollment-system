@@ -37,7 +37,7 @@
             <h2>Sign in</h2>
             <p>Use your university email</p>
 
-            <form id="login-form">
+            <form>
                
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
@@ -49,10 +49,8 @@
                 <div class="row">
                     <label class="remember"> <input type="checkbox"> Remember me </label>
                 </div>
-
-                <div id="login-error" aria-live="polite" style="color: #b91c1c; font-weight: 600; margin-bottom: 8px; display: none;"></div>
-
-                <button class="button primary" type="submit">Sign In</button>
+              
+                <button class="button primary">Sign In</button>
             </form>
 
             <button class="button secondary" onclick="window.location.href='home_page.html'">
@@ -63,8 +61,6 @@
 
         </section>
 
-    </main>
-    <script src="../js/api.js"></script>
-    <script src="../js/login.js"></script>
+    </main>   
 </body>
 </html>
