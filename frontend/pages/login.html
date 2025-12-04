@@ -116,7 +116,7 @@
                 localStorage.setItem('sessionToken', data.sessionToken);
                 localStorage.setItem('userId', data.userId);
                 localStorage.setItem('username', data.username || email);
-
+                localStorage.setItem('username', data.username);
                 // Get user type
                 const userType = await getUserType(data.sessionToken);
                 localStorage.setItem('userType', userType);

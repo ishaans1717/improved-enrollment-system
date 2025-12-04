@@ -1,186 +1,474 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Course Registration</title>
-    <link rel="stylesheet" href="../styles/home_page.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- The page header -->
-    <header>
-      <div class="top-left">
-        <img src="../assets/logo_isu.png" alt="ISU logo" style="width: 50px" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration - Home</title>
+    <link rel="stylesheet" href="../styles/home_page.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="top-left">
+        <img src="../assets/logo_isu.png" alt="ISU logo" style="width: 50px;">
         <span>Course Registration</span>
-      </div>
-
-      <div class="top-right">
+    </div>
+    <div class="top-right">
         <div class="dropdown-container">
-          <span class="student-details"
-            >Aaliyah <span class="symbol">▼</span></span
-          >
-          <div class="dropdown-menu">
-            <div class="dropdown-header">Student Profile</div>
-            <div class="dropdown-row">
-              <span class="dropdown-label">Full Name</span>
-              <span class="dropdown-value">Aaliyah Thomas</span>
-            </div>
-            <div class="dropdown-row">
-              <span class="dropdown-label">Date of Birth</span>
-              <span class="dropdown-value">Oct 13, 2001</span>
-            </div>
-            <div class="dropdown-row">
-              <span class="dropdown-label">GPA</span>
-              <span class="dropdown-value">3.85</span>
-            </div>
-            <div class="dropdown-row">
-              <span class="dropdown-label">Major</span>
-              <span class="dropdown-value">Computer Science</span>
-            </div>
-            <div class="dropdown-row">
-              <span class="dropdown-label">Student ID</span>
-              <span class="dropdown-value">20235501</span>
-            </div>
-            <div class="dropdown-row">
-              <button
-                class="logout-btn"
-                onclick="window.location.href='login.html'"
-              >
-                Log Out
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <main class="main-section">
-      <!-- The left section of page -->
-
-      <section class="options">
-        <button
-          class="option-btn"
-          onclick="window.location.href='home_page.html'"
-        >
-          🏠 Home
-        </button>
-        <button
-          class="option-btn"
-          onclick="window.location.href='course_search.html'"
-        >
-          📘 Register
-        </button>
-        <button class="option-btn">📊 Degree Progress</button>
-        <button class="option-btn">⭐ Recommendations</button>
-      </section>
-
-      <div class="main-text">
-        <!-- Middle section of page -->
-        <section class="middle-section">
-          <div class="search-area">
-            <h1>Search Classes</h1>
-            <input
-              type="text"
-              name="class-search"
-              class="class-search"
-              id="home-search-input"
-              placeholder="Search by course, subject, professor..."
-            />
-            <button class="main-btn" id="home-search-btn">Search</button>
-          </div>
-
-          <div class="recommendation-area">
-            <div>
-              <h2>Recommendations</h2>
-              <p style="font-weight: 100">Based on IT major</p>
-            </div>
-
-            <div class="recommend-block">
-              <div class="logo-recommend">IT</div>
-              <div class="class-recommend-info">
-                <p style="font-weight: bold">
-                  IT 355 Secure Software Development
-                </p>
-                <div class="more-info-recommend">
-                  <p class="date" style="font-size: 13px">
-                    T TH 2:00 PM - 3:15 PM
-                  </p>
-                  <p class="credit-amount" style="font-size: 13px">3 Credits</p>
+            <span class="student-details" id="studentName">Loading... <span class="symbol">▼</span></span>
+            <div class="dropdown-menu">
+                <div class="dropdown-header">Student Profile</div>
+                <div class="dropdown-row">
+                    <span class="dropdown-label">Full Name</span>
+                    <span class="dropdown-value" id="fullName">Loading...</span>
                 </div>
-              </div>
+                <div class="dropdown-row">
+                    <span class="dropdown-label">Email</span>
+                    <span class="dropdown-value" id="email">Loading...</span>
+                </div>
+                <div class="dropdown-row">
+                    <span class="dropdown-label">GPA</span>
+                    <span class="dropdown-value" id="gpa">Loading...</span>
+                </div>
+                <div class="dropdown-row">
+                    <span class="dropdown-label">Major</span>
+                    <span class="dropdown-value" id="major">Loading...</span>
+                </div>
+                <div class="dropdown-row">
+                    <span class="dropdown-label">Student ID</span>
+                    <span class="dropdown-value" id="studentId">Loading...</span>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()" style="margin-top: 15px; padding: 8px 16px; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer; width: 100%;">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="main-section">
+
+    <section class="options">
+        <button class="option-btn" onclick="window.location.href='home_page.html'" disabled>🏠 Home</button>
+        <button class="option-btn" onclick="window.location.href='course_search.html'">📘 Register</button>
+        <button class="option-btn">📊 Degree Progress</button>
+        <button class="option-btn" onclick="loadRecommendations()">⭐ Recommendations</button>
+    </section>
+
+    <div class="main-text">
+
+        <section class="middle-section">
+
+            <!-- SEARCH SECTION -->
+            <div class="search-area">
+                <h1>Search Classes</h1>
+                <input type="text" id="searchInput" class="class-search"
+                       placeholder="Search by course code or name..."
+                       onkeyup="handleSearch(event)">
+                <button class="main-btn" onclick="searchCourses()">Search</button>
             </div>
 
-            <button class="main-btn">View All</button>
-          </div>
+            <!-- SEARCH RESULTS (hidden by default) -->
+            <div id="searchResults" style="display: none; margin-top: 20px;">
+                <h2>Search Results</h2>
+                <div id="searchResultsList"></div>
+            </div>
 
-          <div class="settings-area">
-            <h2>Settings</h2>
-            <p style="font-weight: 100">Manage your account and preferences</p>
-            <button
-              class="main-btn"
-              onclick="window.location.href='account_settings.html'"
-            >
-              Account Settings
-            </button>
-          </div>
+            <!-- RECOMMENDATIONS -->
+            <div class="recommendation-area">
+                <div>
+                    <h2>Recommendations</h2>
+                    <p style="font-weight: 100;">Based on IT major</p>
+                </div>
+                <div id="recommendationsList">
+                    <p style="color: #666;">Loading recommendations...</p>
+                </div>
+                <button class="main-btn" onclick="loadRecommendations()">View All</button>
+            </div>
+
+            <!-- SETTINGS -->
+            <div class="settings-area">
+                <h2>Settings</h2>
+                <p style="font-weight: 100;">Manage your account and preferences</p>
+                <button class="main-btn" onclick="window.location.href='account_settings.html'">Account Settings</button>
+            </div>
+
         </section>
 
-        <!-- Right section of page -->
+        <!-- RIGHT SECTION -->
         <section class="right-section">
-          <div class="registration-cart">
-            <h3>My Registration Cart</h3>
 
-            <div class="cart-block">
-              <div class="cart-class">
-                <p class="title">IT 326 Principles of Software Engineering</p>
-                <p class="text">T TH 2:00 PM - 3:15 PM</p>
-              </div>
-              <span> > </span>
+            <!-- REGISTRATION CART -->
+            <div class="registration-cart">
+                <h3>My Registration Cart</h3>
+                <div id="registrationCart">
+                    <p style="color: #666;">Loading your enrolled courses...</p>
+                </div>
+                <button class="main-btn" onclick="submitRegistration()" id="submitBtn">Submit Registration</button>
             </div>
 
-            <div class="cart-block">
-              <div class="cart-class">
-                <p class="title">IT 383 Principles of Operating Systems</p>
-                <p class="text">M W 3:35 PM - 4:50 PM</p>
-              </div>
-              <span> > </span>
+            <!-- ANNOUNCEMENTS -->
+            <div class="announcement-block">
+                <h3>Announcements</h3>
+                <div class="announcement">
+                    <p class="title">System maintenance</p>
+                    <p class="text">We will be performing maintenance on Saturday, December 13th at 3:00 PM</p>
+                </div>
+                <div class="announcement">
+                    <p class="title">Add/Drop deadline</p>
+                    <p class="text">November 13th</p>
+                </div>
             </div>
 
-            <button class="main-btn">Submit Registration</button>
-          </div>
-
-          <div class="schedule-panel">
-              <div class="schedule-header">
-                <h3>Course Schedule</h3>
-                <span class="schedule-term">Spring 2026</span>
-              </div>
-
-              <div class="schedule-list" id="home-schedule-list"></div>
-          </div>
-
-          <div class="announcement-block">
-            <h3>Announcements</h3>
-
-            <div class="announcement">
-              <p class="title">System maintenance</p>
-              <p class="text">
-                We will be performing maintenance on Saturday, December 13th at
-                3:00 PM
-              </p>
+            <!-- WEEKLY SCHEDULE -->
+            <div class="schedule-block">
+                <h3>Weekly Schedule</h3>
+                <div id="weeklySchedule" class="weekly-list">
+                    <p style="color: #666;">Loading schedule...</p>
+                </div>
             </div>
 
-            <div class="announcement">
-              <p class="title">Add/Drop deadline</p>
-              <p class="text">November 13th</p>
-            </div>
-          </div>
         </section>
-      </div>
-    </main>
-    <script src="../js/home_page.js" defer></script>
-  </body>
+
+        <!-- QUICK ACTIONS -->
+        <section class="card quick-actions">
+            <h2>Quick Actions</h2>
+            <p class="card-subtitle">Jump to common tasks</p>
+            <div class="quick-actions-grid">
+                <button class="quick-action">
+                    <span class="qa-icon">⚠️</span>
+                    <span class="qa-text">View Holds</span>
+                </button>
+                <button class="quick-action">
+                    <span class="qa-icon">🎓</span>
+                    <span class="qa-text">Degree Progress</span>
+                </button>
+                <button class="quick-action">
+                    <span class="qa-icon">📅</span>
+                    <span class="qa-text">Advisor Appointment</span>
+                </button>
+                <button class="quick-action">
+                    <span class="qa-icon">💳</span>
+                    <span class="qa-text">View Bill</span>
+                </button>
+                <button class="quick-action">
+                    <span class="qa-icon">📄</span>
+                    <span class="qa-text">Unofficial Transcript</span>
+                </button>
+                <button class="quick-action">
+                    <span class="qa-icon">🕒</span>
+                    <span class="qa-text">Registration Dates</span>
+                </button>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<script>
+    const API_URL = 'http://localhost:8080/api';
+    let studentId = null;
+    let enrolledCourses = [];
+
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        console.log('📄 Student dashboard loading...');
+
+        // Check authentication
+        const token = localStorage.getItem('sessionToken');
+        const userType = localStorage.getItem('userType');
+
+        if (!token) {
+            console.log('❌ No session token, redirecting to login');
+            alert('Please login first');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        if (userType !== 'STUDENT') {
+            console.log('❌ Not a student account');
+            alert('Access denied. This is for students only.');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        studentId = localStorage.getItem('userId');
+        console.log('✅ Authentication valid, loading data...');
+
+        // Load all data
+        await loadStudentData();
+        await loadEnrolledCourses();
+        await loadRecommendations();
+    });
+
+
+    async function loadStudentData() {
+        const token = localStorage.getItem('sessionToken');
+        const userId = localStorage.getItem('userId');
+        const username = localStorage.getItem('username');
+
+        try {
+            const response = await fetch(`${API_URL}/auth/me?token=${token}`);
+            if (!response.ok) throw new Error('Failed to load student data');
+
+            const data = await response.json();
+            console.log('👤 Student data:', data);
+
+            const firstName = username ? username.split(' ')[0] : 'Student';
+            document.getElementById('studentName').innerHTML = `${firstName} <span class="symbol">▼</span>`;
+            document.getElementById('fullName').textContent = username || 'N/A';
+
+            // Try to get full student details
+            try {
+                const studentResponse = await fetch(`${API_URL}/students/${userId}`);
+                if (studentResponse.ok) {
+                    const studentData = await studentResponse.json();
+                    if (studentData.email) document.getElementById('email').textContent = studentData.email;
+                    if (studentData.gpa !== undefined) document.getElementById('gpa').textContent = studentData.gpa.toFixed(2);
+                    if (studentData.major) document.getElementById('major').textContent = studentData.major;
+                    if (studentData.id) document.getElementById('studentId').textContent = studentData.id;
+                }
+            } catch (err) {
+                console.warn('⚠️ Using fallback data');
+                document.getElementById('email').textContent = 'N/A';
+                document.getElementById('gpa').textContent = '0.00';
+                document.getElementById('major').textContent = 'Undeclared';
+                document.getElementById('studentId').textContent = userId || 'N/A';
+            }
+        } catch (error) {
+            console.error('❌ Error loading student data:', error);
+        }
+    }
+
+
+    async function loadEnrolledCourses() {
+        try {
+            const response = await fetch(`${API_URL}/courses/student/${studentId}/enrolled`);
+            const enrollments = await response.json();
+            enrolledCourses = enrollments;
+
+            console.log('📚 Enrolled courses:', enrollments);
+
+            const cartDiv = document.getElementById('registrationCart');
+
+            if (enrollments.length === 0) {
+                cartDiv.innerHTML = '<p style="color: #666; padding: 20px;">No courses in your cart yet. Click "Register" to add courses!</p>';
+                document.getElementById('submitBtn').disabled = true;
+                return;
+            }
+
+            let html = '';
+            enrollments.forEach(enrollment => {
+                const course = enrollment.course;
+                if (enrollment.status === 'ENROLLED') {
+                    html += `
+                        <div class="cart-block">
+                            <div class="cart-class">
+                                <p class="title">IT ${course.code} ${course.title}</p>
+                                <p class="text">${course.credits} Credits</p>
+                            </div>
+                            <button onclick="dropCourse(${course.id})" style="background: #ef4444; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer;">
+                                Drop
+                            </button>
+                        </div>
+                    `;
+                }
+            });
+
+            cartDiv.innerHTML = html || '<p style="color: #666;">No enrolled courses</p>';
+            document.getElementById('submitBtn').disabled = enrollments.length === 0;
+
+        } catch (error) {
+            console.error('❌ Error loading enrollments:', error);
+            document.getElementById('registrationCart').innerHTML =
+                '<p style="color: #ef4444;">Error loading courses</p>';
+        }
+    }
+
+    async function searchCourses() {
+        const query = document.getElementById('searchInput').value.trim();
+
+        if (!query) {
+            alert('Please enter a search term');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/courses/search?query=${encodeURIComponent(query)}`);
+            const courses = await response.json();
+
+            console.log('🔍 Search results:', courses);
+
+            const resultsDiv = document.getElementById('searchResults');
+            const listDiv = document.getElementById('searchResultsList');
+
+            if (courses.length === 0) {
+                listDiv.innerHTML = '<p>No courses found</p>';
+            } else {
+                let html = '';
+                courses.forEach(course => {
+                    html += `
+                        <div style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 8px; background: white;">
+                            <h3>IT ${course.code} - ${course.title}</h3>
+                            <p style="color: #666;">${course.description}</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                                <span>${course.credits} Credits | Capacity: ${course.capacity}</span>
+                                <button onclick="enrollInCourse(${course.id})" style="background: #10b981; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                                    Enroll
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                listDiv.innerHTML = html;
+            }
+
+            resultsDiv.style.display = 'block';
+        } catch (error) {
+            console.error('❌ Search error:', error);
+            alert('Error searching courses');
+        }
+    }
+
+    function handleSearch(event) {
+        if (event.key === 'Enter') {
+            searchCourses();
+        }
+    }
+
+
+    async function loadRecommendations() {
+        try {
+            const response = await fetch(`${API_URL}/courses`);
+            const courses = await response.json();
+
+            console.log('⭐ Recommendations:', courses);
+
+            // Show first 3 courses as recommendations
+            const recommended = courses.slice(0, 3);
+
+            const listDiv = document.getElementById('recommendationsList');
+            let html = '';
+
+            recommended.forEach(course => {
+                html += `
+                    <div class="recommend-block" style="margin: 10px 0;">
+                        <div class="logo-recommend">IT</div>
+                        <div class="class-recommend-info">
+                            <p style="font-weight: bold;">IT ${course.code} ${course.title}</p>
+                            <div class="more-info-recommend">
+                                <p class="credit-amount" style="font-size: 13px;">${course.credits} Credits</p>
+                            </div>
+                        </div>
+                        <button onclick="enrollInCourse(${course.id})" style="background: #10b981; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">
+                            Enroll
+                        </button>
+                    </div>
+                `;
+            });
+
+            listDiv.innerHTML = html;
+        } catch (error) {
+            console.error('❌ Error loading recommendations:', error);
+        }
+    }
+
+    async function enrollInCourse(courseId) {
+        if (!confirm('Do you want to enroll in this course?')) return;
+
+        try {
+            const response = await fetch(
+                `${API_URL}/courses/${courseId}/enroll?studentId=${studentId}`,
+                { method: 'POST' }
+            );
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert('✅ ' + result.message);
+                await loadEnrolledCourses();
+            } else {
+                alert('❌ ' + result.message);
+            }
+        } catch (error) {
+            console.error('❌ Enrollment error:', error);
+            alert('Error enrolling in course');
+        }
+    }
+
+
+    async function dropCourse(courseId) {
+        if (!confirm('Are you sure you want to drop this course?')) return;
+
+        try {
+            const response = await fetch(
+                `${API_URL}/courses/${courseId}/drop?studentId=${studentId}`,
+                { method: 'DELETE' }
+            );
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert('✅ ' + result.message);
+                await loadEnrolledCourses();
+            } else {
+                alert('❌ ' + result.message);
+            }
+        } catch (error) {
+            console.error('❌ Drop error:', error);
+            alert('Error dropping course');
+        }
+    }
+
+    function submitRegistration() {
+        if (enrolledCourses.length === 0) {
+            alert('No courses to submit!');
+            return;
+        }
+
+        alert(`✅ Registration submitted successfully for ${enrolledCourses.length} course(s)!`);
+    }
+
+
+    async function handleLogout() {
+        console.log('🚪 Logging out...');
+        const token = localStorage.getItem('sessionToken');
+
+        try {
+            await fetch(`${API_URL}/auth/logout`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: token })
+            });
+
+            localStorage.clear();
+            alert('Logged out successfully!');
+            window.location.href = 'login.html';
+        } catch (error) {
+            console.error('❌ Logout error:', error);
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
+    }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const dropdown = document.querySelector('.dropdown-container');
+        const menu = document.querySelector('.dropdown-menu');
+
+        if (dropdown && menu) {
+            dropdown.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            });
+
+            document.addEventListener('click', () => {
+                menu.style.display = 'none';
+            });
+        }
+    });
+</script>
+
+</body>
 </html>
