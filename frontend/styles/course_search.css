@@ -90,7 +90,7 @@ header {
     flex: 1;
     gap: 10px;
     padding: 20px;
-    height: 100%;
+    height: 80%;
     width: 1200px;
     margin-right: 10px ;
 }
@@ -148,7 +148,7 @@ header {
     flex: 1;
     justify-content: space-evenly;
     padding: 20px;
-    height: 100%;
+    height: 80%;
     width: 100px;
 
 }
@@ -185,6 +185,7 @@ header {
 .main-text {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .weekly-list {
@@ -342,6 +343,9 @@ header {
 
 .dropdown-row:last-child {
     margin-bottom: 0;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
 }
 
 .dropdown-container:hover .dropdown-menu,
@@ -429,3 +433,95 @@ header {
     flex-direction: column;
     gap: 15px;
 }
+
+.schedule-panel {
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 4px 4px 4px rgba(0,0,0,0.38);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 420px;         
+  overflow-y: auto;
+}
+
+.schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.schedule-term {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.schedule-item {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.schedule-day-pill {
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.schedule-info {
+  flex: 1;
+}
+
+.schedule-course {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.schedule-time {
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 10px 0;
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(239,68,68,0.10);
+    transition: background 0.18s, box-shadow 0.18s;
+}
+.logout-btn:hover {
+    background: #dc2626;
+    box-shadow: 0 4px 16px rgba(239,68,68,0.16);
+}
+.dropdown-row .logout-btn {
+    background: #ef4444;
+    box-shadow: none;
+    margin: 0;
+    border-radius: 8px;
+}
+
