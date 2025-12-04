@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Registration</title>
-    <link rel="stylesheet" href="../styles/home_page.css">
+    <link rel="stylesheet" href="../styles/course_search.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -47,14 +47,14 @@
 
     </header>
 
-    <main class="main-section">
+    <main class="main-section main-course">
 
         <!-- The left section of page -->
 
         <section class="options">
             <button class="option-btn" onclick="window.location.href='home_page.html'">🏠 Home</button>
             <button class="option-btn">👤 Profile</button>
-            <button class="option-btn" onclick="window.location.href='course_search.html'">📘 Register</button>
+            <button class="option-btn">📘 Register</button>
             <button class="option-btn">📊 Degree Progress</button>
             <button class="option-btn">⭐ Recommendations</button>
         </section>
@@ -62,7 +62,7 @@
         <div class="main-text">
 
         <!-- Middle section of page -->
-        <section class="middle-section">
+        <section class="middle-section mid">
 
             <div class="search-area">
                 <h1>Search Classes</h1>
@@ -70,40 +70,42 @@
                 class="class-search" placeholder="Search by course, subject, professor...">
                 <button class="main-btn">Search</button>
             </div>
+            <h2 style="margin-bottom: 15px;">3 Results</h2>
 
-            <div class="recommendation-area">
-                <div>
-                    <h2>Recommendations</h2>
-                    <p style="font-weight: 100;">Based on IT major</p>
-                </div>
-
-                <div class="recommend-block">
-                    <div class="logo-recommend">
-                        IT
-                    </div>
-                    <div class="class-recommend-info">
-                        <p style="font-weight: bold;">IT 355 Secure Software Development</p>
-                        <div class="more-info-recommend">
-                            <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
-                            <p class="credit-amount" style="font-size: 13px;">3 Credits</p>
+            <div class="results">
+                        <div class="result-block">
+                            <div class="logo-result">IT</div>
+                            <div class="class-result-info">
+                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
+                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
+                            </div>
+                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
+                                <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
                         </div>
-                    </div>
-                </div>
-
-                <button class="main-btn">View All</button>
-
-            </div>
-
-            <div class="settings-area">
-                <h2>Settings</h2>
-                <p style="font-weight: 100;">Manage your account and preferences</p>
-                <button class="main-btn">Account Settings</button>
+                        <div class="result-block">
+                            <div class="logo-result">IT</div>
+                            <div class="class-result-info">
+                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
+                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
+                            </div>
+                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
+                            <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
+                        </div>
+                        <div class="result-block">
+                            <div class="logo-result">IT</div>
+                            <div class="class-result-info">
+                                <p style="font-weight: bold;">IT 355 Secure Software Development</p>
+                                <p class="date" style="font-size: 13px;">T TH 2:00 PM - 3:15 PM</p>
+                            </div>
+                            <p class="credit-amount" style="font-size: 13px; font-weight: 500;">3 Credits</p>
+                                <button class="add-to-cart-btn" style="background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 6px 16px; font-weight: 600; cursor: pointer;">Add to Cart</button>
+                        </div>
             </div>
 
         </section>
 
         <!-- Right section of page -->
-        <section class="right-section">
+        <section class="right-section right">
 
             <div class="registration-cart">
                 <h3>My Registration Cart</h3>
@@ -127,57 +129,16 @@
                 <button class="main-btn">Submit Registration</button>
             </div>
 
-            <div class="announcement-block">
-                <h3>Annoucements</h3>
-
-                <div class="announcement">
-                    <p class="title">System maintenance</p>
-                    <p class="text">We will be performing maintenance on Saturday, December 13th at 3:00 PM</p>
-                </div>
-
-                <div class="announcement">
-                    <p class="title">Add/Drop deadline</p>
-                    <p class="text">November 13th</p>
-                </div>
-            </div>
-
+           
             <div class="schedule-block">
                 <h3>Weekly Schedule</h3>
-                <div class="weekly-list">
-                  <div class="day-block" data-day="monday">
-                    <h4>Monday</h4>
-                    <ul class="class-list">
-                      <li class="class-item">IT 355 - 9:00am</li>
-                      <li class="class-item">IT 386 - 11:00am</li>
-                    </ul>
-                  </div>
-                  <div class="day-block" data-day="tuesday">
-                    <h4>Tuesday</h4>
-                    <ul class="class-list">
-                      <li class="class-item">IT 326 - 10:00am</li>
-                    </ul>
-                  </div>
-                  <div class="day-block" data-day="wednesday">
-                    <h4>Wednesday</h4>
-                    <ul class="class-list">
-                      <li class="class-item">IT 355 - 8:00am</li>
-                      <li class="class-item">IT 386 - 1:00pm</li>
-                    </ul>
-                  </div>
-                  <div class="day-block" data-day="thursday">
-                    <h4>Thursday</h4>
-                    <ul class="class-list">
-                      <li class="class-item">IT 326 - 9:00am</li>
-                    </ul>
-                  </div>
-                  <div class="day-block" data-day="friday">
-                    <h4>Friday</h4>
-                    <ul class="class-list">
-                      <li class="class-item">IT 355 - 10:00am</li>
-                      <li class="class-item">IT 386 - 2:00pm</li>
-                    </ul>
-                  </div>
-                </div>
+                <ul class="weekly">
+                  <li><strong>Monday:</strong> IT 355 - 9:00am, IT 386 - 11:00am</li>
+                  <li><strong>Tuesday:</strong> IT 326 - 10:00am</li>
+                  <li><strong>Wednesday:</strong> IT 355 - 8:00am, IT 386 - 1:00pm</li>
+                  <li><strong>Thursday:</strong> IT 326 - 9:00am</li>
+                  <li><strong>Friday:</strong> IT 355 - 10:00am, IT 386 - 2:00pm</li>
+                </ul>
             </div>
 
         </section>
