@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration Login</title>
+    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <img src="../assets/logo_isu.png" class="logo" alt="Illinois State University Logo">
+        <span class="header-title">Course Registration</span>
+    </header> 
+
+    <main class="container">
+
+        <section class="welcome-side">
+            <h4 class="welcome-back">Welcome back</h4>
+            <h1 class="main-title">Sign in to plan your classes</h1>
+            <p class="subtitle">
+                Register faster, track degree progress, and see personalized picks.
+            </p>
+
+            <img src="../assets/computer_logo.svg" class="front-photo" alt="Photo of a woman on a computer doing tasks">
+
+            <ul class="feature-list">
+                <li>Secure login</li>
+                <li>Single sign-on</li>
+                <li>Student support 24/7</li>
+            </ul>
+        </section>
+
+        <section class="sign-in-box">
+            <h2>Sign in</h2>
+            <p>Use your university email</p>
+
+            <form>
+               
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+              
+               
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <div class="row">
+                    <label class="remember"> <input type="checkbox"> Remember me </label>
+                </div>
+              
+                <button class="button primary">Sign In</button>
+            </form>
+
+            <button class="button secondary">Use University Login</button>
+
+            <p class="create">New here? <a href="#">Create account</a></p>
+
+        </section>
+
+    </main>   
+</body>
+</html>
