@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration</title>
+    <link rel="stylesheet" href="../styles/course_search.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- The page header -->
+    <header>
+        <div class="top-left">
+            <img src="../assets/logo_isu.png" alt="ISU logo" style="width: 50px;">
+            <span>Course Registration</span>
+        </div>
+
+        <div class="top-right">
+            <div class="dropdown-container">
+                <span class="student-details">Aaliyah <span class="symbol">▼</span></span>
+                <div class="dropdown-menu">
+                    <div class="dropdown-header">Student Profile</div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Full Name</span>
+                        <span class="dropdown-value">Aaliyah Thomas</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Date of Birth</span>
+                        <span class="dropdown-value">Oct 13, 2001</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">GPA</span>
+                        <span class="dropdown-value">3.85</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Major</span>
+                        <span class="dropdown-value">Computer Science</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <span class="dropdown-label">Student ID</span>
+                        <span class="dropdown-value">20235501</span>
+                    </div>
+                    <div class="dropdown-row">
+                        <button class="logout-btn" onclick="window.location.href='login.html'">Log Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <main class="main-section main-course">
+
+        <!-- The left section of page -->
+        <section class="options">
+            <button class="option-btn" onclick="window.location.href='home_page.html'">🏠 Home</button>
+            <button class="option-btn" onclick="window.location.href='course_search.html'" disabled>📘 Register</button>
+            <button class="option-btn">📊 Degree Progress</button>
+            <button class="option-btn">⭐ Recommendations</button>
+        </section>
+
+        <div class="main-text">
+
+        <!-- Middle section of page -->
+        <section class="middle-section mid">
+
+            <div class="search-area">
+                <h1>Search Classes</h1>
+                <input type="text" name="class-search" id="search-input" class="class-search" placeholder="Search by course, subject, professor...">
+                <button class="main-btn" id="search-btn">Search</button>
+                <p id="search-error" class="error-text"></p>
+            </div>
+
+            <h2 style="margin: 20px 0 15px;">
+                <span id="result-count">0</span> Results
+            </h2>
+
+            <div class="results" id="results-container"></div>
+
+        </section>
+
+        <!-- Right section of page -->
+        <section class="right-section right">
+
+            <div class="registration-cart">
+                <h3>My Registration Cart</h3>
+
+                <div id="cart-container"></div>
+
+                <button id="submit-btn" class="main-btn">Submit Registration</button>
+            </div>
+
+            <div class="schedule-panel">
+                <div class="schedule-header">
+                    <h3>Course Schedule</h3>
+                    <span class="schedule-term">Spring 2026</span>
+                </div>
+
+                <div class="schedule-list" id="schedule-list"></div>
+            </div>
+
+        </section>
+
+        </div>
+
+    </main>
+
+    <!-- JS logic for cart and scheudle -->
+    <script src="../js/course_search.js" defer></script>
+</body>
+</html>

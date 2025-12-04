@@ -30,6 +30,7 @@ public class AdvisorController {
 
     @PostMapping
     public Advisor createAdvisor(@RequestBody Advisor advisor) {
+        advisor.setRole("ADVISOR");
         return advisorService.saveAdvisor(advisor);
     }
 
