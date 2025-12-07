@@ -19,6 +19,8 @@ public class Course  {
     @EqualsAndHashCode.Include
     private Long id;
 
+    private String subject;
+
     private String code;
 
     private String title;

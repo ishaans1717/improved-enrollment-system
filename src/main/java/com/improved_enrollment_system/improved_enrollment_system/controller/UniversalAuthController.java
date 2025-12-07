@@ -3,21 +3,24 @@ package com.improved_enrollment_system.improved_enrollment_system.controller;
 import com.improved_enrollment_system.improved_enrollment_system.dto.LoginResult;
 import com.improved_enrollment_system.improved_enrollment_system.dto.LogoutResult;
 import com.improved_enrollment_system.improved_enrollment_system.entity.User;
+import com.improved_enrollment_system.improved_enrollment_system.repository.UserRepository;
 import com.improved_enrollment_system.improved_enrollment_system.service.UniversalAuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
 public class UniversalAuthController {
 
     private final UniversalAuthService authService;
+    private final UserRepository userRepository;
 
-    public UniversalAuthController(UniversalAuthService authService) {
+    public UniversalAuthController(UniversalAuthService authService, UserRepository userRepository) {
         this.authService = authService;
+        this.userRepository = userRepository;
     }
-
 
     @PostMapping("/register")
     public ResponseEntity<LoginResult> register(@RequestBody RegisterRequest request) {
@@ -30,7 +33,6 @@ public class UniversalAuthController {
         return ResponseEntity.ok(result);
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<LoginResult> login(@RequestBody LoginRequest request) {
         LoginResult result = authService.login(
@@ -40,20 +42,18 @@ public class UniversalAuthController {
         return ResponseEntity.ok(result);
     }
 
-
     @PostMapping("/logout")
     public ResponseEntity<LogoutResult> logout(@RequestBody LogoutRequest request) {
         LogoutResult result = authService.logout(request.getToken());
         return ResponseEntity.ok(result);
     }
 
-
     @GetMapping("/me")
     public ResponseEntity<UserInfo> getCurrentUser(@RequestParam String token) {
         User user = authService.getCurrentUser(token);
 
         if (user == null) {
-            return ResponseEntity.status(401).build(); // Unauthorized
+            return ResponseEntity.status(401).build();
         }
 
         String userType = authService.getUserType(token);
@@ -66,19 +66,56 @@ public class UniversalAuthController {
         return ResponseEntity.ok(info);
     }
 
-
     @GetMapping("/check")
     public ResponseEntity<Boolean> checkLogin(@RequestParam String token) {
         boolean isLoggedIn = authService.isLoggedIn(token);
         return ResponseEntity.ok(isLoggedIn);
     }
 
+    @PostMapping("/reset-password")
+    public ResponseEntity<LoginResult> resetPassword(@RequestBody ResetPasswordRequest request) {
+        try {
+            System.out.println("🔑 Password reset attempt:");
+            System.out.println("   Email: " + request.getEmail());
+            System.out.println("   User ID: " + request.getUserId());
+
+            Optional<User> userByEmail = userRepository.findByEmail(request.getEmail());
+
+            if (!userByEmail.isPresent()) {
+                System.out.println("❌ Email not found in database");
+                return ResponseEntity.ok(new LoginResult(false, "Email not found"));
+            }
+
+            User user = userByEmail.get();
+
+            if (!user.getId().toString().equals(request.getUserId())) {
+                System.out.println("❌ User ID does not match");
+                System.out.println("   Expected: " + user.getId());
+                System.out.println("   Received: " + request.getUserId());
+                return ResponseEntity.ok(new LoginResult(false, "Email and Student ID do not match"));
+            }
+
+            user.setPassword(request.getNewPassword());
+            userRepository.save(user);
+
+            System.out.println("✅ Password reset successful!");
+            System.out.println("   User: " + user.getEmail());
+            System.out.println("   ID: " + user.getId());
+
+            return ResponseEntity.ok(new LoginResult(true, "Password reset successfully! You can now login."));
+
+        } catch (Exception e) {
+            System.err.println("❌ Password reset error: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.ok(new LoginResult(false, "Error resetting password: " + e.getMessage()));
+        }
+    }
 
     public static class RegisterRequest {
         private String username;
         private String password;
         private String email;
-        private String userType; // "STUDENT", "ADVISOR", "ADMINISTRATOR"
+        private String userType;
 
         public String getUsername() { return username; }
         public void setUsername(String username) { this.username = username; }
@@ -93,25 +130,40 @@ public class UniversalAuthController {
         public void setUserType(String userType) { this.userType = userType; }
     }
 
-    public static class LoginRequest{
+    public static class LoginRequest {
         private String email;
         private String password;
 
-        public String getEmail(){ return email; }
+        public String getEmail() { return email; }
         public void setEmail(String email) { this.email = email; }
 
         public String getPassword() { return password; }
         public void setPassword(String password) { this.password = password; }
     }
 
-    public static class LogoutRequest{
+    public static class LogoutRequest {
         private String token;
 
-        public String getToken(){ return token; }
+        public String getToken() { return token; }
         public void setToken(String token) { this.token = token; }
     }
 
-    public static class UserInfo{
+    public static class ResetPasswordRequest {
+        private String email;
+        private String userId;
+        private String newPassword;
+
+        public String getEmail() { return email; }
+        public void setEmail(String email) { this.email = email; }
+
+        public String getUserId() { return userId; }
+        public void setUserId(String userId) { this.userId = userId; }
+
+        public String getNewPassword() { return newPassword; }
+        public void setNewPassword(String newPassword) { this.newPassword = newPassword; }
+    }
+
+    public static class UserInfo {
         private Long id;
         private String userType;
         private boolean loggedIn;

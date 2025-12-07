@@ -244,11 +244,17 @@ header {
 }
 
 .course-table th,
-.course-table td {
-  padding: 8px 10px;
-  border-bottom: 1px solid #e5e7eb;
-  text-align: left;
-}
+  .course-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+  }
+
+  .empty-row {
+    text-align: center;
+    color: #6b7280;
+    font-weight: 500;
+  }
 
 .course-table th {
   background: #f9fafb;
@@ -302,22 +308,55 @@ header {
   color: #4b5563;
 }
 
-.add-course-form input {
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 8px 10px;
-  font-size: 0.9rem;
-  background: #f9fafb;
+  .add-course-form input,
+  .add-course-form select,
+  .add-course-form textarea {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    background: #f9fafb;
   transition: border 0.15s, box-shadow 0.15s, background 0.15s, transform 0.05s;
 }
 
-.add-course-form input:focus {
-  outline: none;
-  border-color: #ef4444;
-  background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
-  transform: translateY(-1px);
-}
+  .add-course-form input:focus,
+  .add-course-form select:focus,
+  .add-course-form textarea:focus {
+    outline: none;
+    border-color: #ef4444;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+    transform: translateY(-1px);
+  }
+
+  .add-course-form textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .helper-text {
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+
+  .status-message {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .status-message.success {
+    color: #059669;
+  }
+
+  .status-message.error {
+    color: #b91c1c;
+  }
+
+  .status-message.warning {
+    color: #d97706;
+  }
 
 .add-course-btn {
   width: 100%;
