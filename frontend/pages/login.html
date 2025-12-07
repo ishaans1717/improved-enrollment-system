@@ -111,21 +111,13 @@
 
                 console.log('User type:', userType);
 
-                setTimeout(() => {
-                    if (userType === 'STUDENT') {
-                        console.log('✅ Redirecting to student dashboard');
-                        window.location.href = 'home_page.html';
-                    } else if (userType === 'ADVISOR') {
-                        console.log('✅ Redirecting to advisor dashboard');
-                        window.location.href = 'admin_home.html';
-                    } else if (userType === 'ADMINISTRATOR') {
-                        console.log('✅ Redirecting to admin dashboard');
-                        window.location.href = 'admin_home.html';
-                    } else {
-                        console.log('⚠️ Unknown user type, redirecting to home');
-                        window.location.href = 'home_page.html';
-                    }
-                }, 1000);
+                if (userType === 'STUDENT') {
+                    window.location.href = 'home_page.html';
+                } else if (userType === 'ADVISOR' || userType === 'ADMINISTRATOR') {
+                    window.location.href = 'admin_home.html';
+                } else {
+                    window.location.href = 'home_page.html';
+                }
 
             } else {
                 messageDiv.innerHTML = `<p style="color: #dc3545; font-weight: 600;">✗ ${data.message || 'Login failed'}</p>`;
