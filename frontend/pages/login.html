@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,24 +38,21 @@
         <h2>Sign in</h2>
         <p>Use your university email</p>
 
-        <!-- ⭐ UPDATED: Added id and onsubmit -->
         <form id="loginForm" onsubmit="handleLogin(event)">
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
-
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
             <div class="row">
                 <label class="remember"> <input type="checkbox"> Remember me </label>
+                <a href="reset_password.html" style="color: #d13c3c; text-decoration: none; font-size: 13px;">Forgot password?</a>
             </div>
 
-            <!-- ⭐ UPDATED: Added type="submit" and id -->
             <button type="submit" class="button primary" id="signInBtn">Sign In</button>
 
-            <!-- ⭐ NEW: Message area for errors/success -->
             <div id="message" style="margin-top: 15px; text-align: center; font-size: 14px;"></div>
         </form>
 
@@ -64,33 +62,26 @@
 
         <p class="create">New here? <a href="create_account.html">Create account</a></p>
 
-
     </section>
 
 </main>
 
-<!-- ⭐ NEW: JavaScript to connect to backend -->
 <script>
-    // Backend API URL (update if your backend runs on different port)
     const API_URL = 'http://localhost:8080/api/auth';
 
-    // Handle login form submission
     async function handleLogin(event) {
-        event.preventDefault(); // Prevent page refresh
+        event.preventDefault();
 
-        // Get form values
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const messageDiv = document.getElementById('message');
         const signInBtn = document.getElementById('signInBtn');
 
-        // Show loading state
         signInBtn.disabled = true;
         signInBtn.textContent = 'Signing in...';
         messageDiv.innerHTML = '<p style="color: #666;">Connecting to server...</p>';
 
         try {
-            // Call backend login API
             console.log('Attempting login for:', email);
 
             const response = await fetch(`${API_URL}/login`, {
@@ -109,46 +100,40 @@
             console.log('Response data:', data);
 
             if (data.success) {
-                // ✅ Login successful!
                 messageDiv.innerHTML = '<p style="color: #28a745; font-weight: 600;">✓ Login successful! Redirecting...</p>';
 
-                // Save session info
                 localStorage.setItem('sessionToken', data.sessionToken);
                 localStorage.setItem('userId', data.userId);
                 localStorage.setItem('username', data.username || email);
 
-                // Get user type
                 const userType = await getUserType(data.sessionToken);
                 localStorage.setItem('userType', userType);
 
                 console.log('User type:', userType);
 
-                // Redirect based on user type after 1 second
                 setTimeout(() => {
-                if (userType === 'STUDENT') {
-                    console.log('✅ Redirecting to student dashboard');
-                    window.location.href = 'home_page.html';
-                } else if (userType === 'ADVISOR') {
-                    console.log('✅ Redirecting to advisor dashboard');
-                    window.location.href = 'admin_home.html';
-                } else if (userType === 'ADMINISTRATOR') {
-                    console.log('✅ Redirecting to admin dashboard');
-                    window.location.href = 'admin_home.html';
-                } else {
-                    console.log('⚠️ Unknown user type, redirecting to home');
-                    window.location.href = 'home_page.html';
-                }
-            }, 1000);
+                    if (userType === 'STUDENT') {
+                        console.log('✅ Redirecting to student dashboard');
+                        window.location.href = 'home_page.html';
+                    } else if (userType === 'ADVISOR') {
+                        console.log('✅ Redirecting to advisor dashboard');
+                        window.location.href = 'admin_home.html';
+                    } else if (userType === 'ADMINISTRATOR') {
+                        console.log('✅ Redirecting to admin dashboard');
+                        window.location.href = 'admin_home.html';
+                    } else {
+                        console.log('⚠️ Unknown user type, redirecting to home');
+                        window.location.href = 'home_page.html';
+                    }
+                }, 1000);
 
             } else {
-                // ❌ Login failed
                 messageDiv.innerHTML = `<p style="color: #dc3545; font-weight: 600;">✗ ${data.message || 'Login failed'}</p>`;
                 signInBtn.disabled = false;
                 signInBtn.textContent = 'Sign In';
             }
 
         } catch (error) {
-            // ❌ Network or server error
             console.error('Login error:', error);
             messageDiv.innerHTML = `
                 <p style="color: #dc3545; font-weight: 600;">
@@ -163,7 +148,6 @@
         }
     }
 
-    // Get user type from backend
     async function getUserType(sessionToken) {
         try {
             const response = await fetch(`${API_URL}/me?token=${sessionToken}`);
@@ -175,18 +159,14 @@
         }
     }
 
-    // Test backend connection when page loads
     window.addEventListener('DOMContentLoaded', async () => {
         console.log('Page loaded, testing backend connection...');
 
-        // Check if already logged in
         const token = localStorage.getItem('sessionToken');
         if (token) {
             console.log('User already logged in with token:', token);
-            // Optionally redirect to dashboard
         }
 
-        // Test backend connection
         try {
             const response = await fetch(`${API_URL}/check?token=test`);
             console.log('Backend connection test:', response.ok ? 'SUCCESS' : 'FAILED');
