@@ -30,6 +30,7 @@ public class AdministratorController {
 
     @PostMapping
     public Administrator createAdministrator(@RequestBody Administrator administrator) {
+        administrator.setRole("ADMINISTRATOR");
         return administratorService.saveAdministrator(administrator);
     }
 

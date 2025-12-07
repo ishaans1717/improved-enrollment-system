@@ -12,9 +12,9 @@ public class AdvisorService {
     private final AdvisorRepository advisorRepository;
 
     public AdvisorService(AdvisorRepository advisorRepository) {
-
         this.advisorRepository = advisorRepository;
     }
+
 
     public List<Advisor> getAllAdvisors() {
 
