@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,55 +11,162 @@
 </head>
 <body>
 
-    <header class="header">
-        <img src="../assets/logo_isu.png" class="logo" alt="Illinois State University Logo">
-        <span class="header-title">Course Registration</span>
-    </header> 
+<header class="header">
+    <img src="../assets/logo_isu.png" class="logo" alt="Illinois State University Logo">
+    <span class="header-title">Course Registration</span>
+</header>
 
-    <main class="container">
+<main class="container">
 
-        <section class="welcome-side">
-            <h4 class="welcome-back">Welcome back</h4>
-            <h1 class="main-title">Sign in to plan your classes</h1>
-            <p class="subtitle">
-                Register faster, track degree progress, and see personalized picks.
-            </p>
+    <section class="welcome-side">
+        <h4 class="welcome-back">Welcome back</h4>
+        <h1 class="main-title">Sign in to plan your classes</h1>
+        <p class="subtitle">
+            Register faster, track degree progress, and see personalized picks.
+        </p>
 
-            <img src="../assets/computer_logo.svg" class="front-photo" alt="Photo of a woman on a computer doing tasks">
+        <img src="../assets/computer_logo.svg" class="front-photo" alt="Photo of a woman on a computer doing tasks">
 
-            <ul class="feature-list">
-                <li>Secure login</li>
-                <li>Single sign-on</li>
-                <li>Student support 24/7</li>
-            </ul>
-        </section>
+        <ul class="feature-list">
+            <li>Secure login</li>
+            <li>Single sign-on</li>
+            <li>Student support 24/7</li>
+        </ul>
+    </section>
 
-        <section class="sign-in-box">
-            <h2>Sign in</h2>
-            <p>Use your university email</p>
+    <section class="sign-in-box">
+        <h2>Sign in</h2>
+        <p>Use your university email</p>
 
-            <form>
-               
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-              
-               
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+        <form id="loginForm" onsubmit="handleLogin(event)">
 
-                <div class="row">
-                    <label class="remember"> <input type="checkbox"> Remember me </label>
-                </div>
-              
-                <button class="button primary">Sign In</button>
-            </form>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
 
-            <button class="button secondary">Use University Login</button>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
 
-            <p class="create">New here? <a href="#">Create account</a></p>
+            <div class="row">
+                <label class="remember"> <input type="checkbox"> Remember me </label>
+                <a href="reset_password.html" style="color: #d13c3c; text-decoration: none; font-size: 13px;">Forgot password?</a>
+            </div>
 
-        </section>
+            <button type="submit" class="button primary" id="signInBtn">Sign In</button>
 
-    </main>   
+            <div id="message" style="margin-top: 15px; text-align: center; font-size: 14px;"></div>
+        </form>
+
+        <button class="button secondary" onclick="window.location.href='home_page.html'">
+            Use University Login
+        </button>
+
+        <p class="create">New here? <a href="create_account.html">Create account</a></p>
+
+    </section>
+
+</main>
+
+<script>
+    const API_URL = 'http://localhost:8080/api/auth';
+
+    async function handleLogin(event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const messageDiv = document.getElementById('message');
+        const signInBtn = document.getElementById('signInBtn');
+
+        signInBtn.disabled = true;
+        signInBtn.textContent = 'Signing in...';
+        messageDiv.innerHTML = '<p style="color: #666;">Connecting to server...</p>';
+
+        try {
+            console.log('Attempting login for:', email);
+
+            const response = await fetch(`${API_URL}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+
+            console.log('Response status:', response.status);
+            const data = await response.json();
+            console.log('Response data:', data);
+
+            if (data.success) {
+                messageDiv.innerHTML = '<p style="color: #28a745; font-weight: 600;">✓ Login successful! Redirecting...</p>';
+
+                localStorage.setItem('sessionToken', data.sessionToken);
+                localStorage.setItem('userId', data.userId);
+                localStorage.setItem('username', data.username || email);
+
+                const userType = await getUserType(data.sessionToken);
+                localStorage.setItem('userType', userType);
+
+                console.log('User type:', userType);
+
+                if (userType === 'STUDENT') {
+                    window.location.href = 'home_page.html';
+                } else if (userType === 'ADVISOR' || userType === 'ADMINISTRATOR') {
+                    window.location.href = 'admin_home.html';
+                } else {
+                    window.location.href = 'home_page.html';
+                }
+
+            } else {
+                messageDiv.innerHTML = `<p style="color: #dc3545; font-weight: 600;">✗ ${data.message || 'Login failed'}</p>`;
+                signInBtn.disabled = false;
+                signInBtn.textContent = 'Sign In';
+            }
+
+        } catch (error) {
+            console.error('Login error:', error);
+            messageDiv.innerHTML = `
+                <p style="color: #dc3545; font-weight: 600;">
+                    ✗ Cannot connect to server.<br>
+                    <span style="font-size: 12px; font-weight: 400;">
+                        Make sure backend is running on http://localhost:8080
+                    </span>
+                </p>
+            `;
+            signInBtn.disabled = false;
+            signInBtn.textContent = 'Sign In';
+        }
+    }
+
+    async function getUserType(sessionToken) {
+        try {
+            const response = await fetch(`${API_URL}/me?token=${sessionToken}`);
+            const data = await response.json();
+            return data.userType || 'USER';
+        } catch (error) {
+            console.error('Error getting user type:', error);
+            return 'USER';
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', async () => {
+        console.log('Page loaded, testing backend connection...');
+
+        const token = localStorage.getItem('sessionToken');
+        if (token) {
+            console.log('User already logged in with token:', token);
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/check?token=test`);
+            console.log('Backend connection test:', response.ok ? 'SUCCESS' : 'FAILED');
+        } catch (error) {
+            console.warn('Backend not running:', error.message);
+        }
+    });
+</script>
+
 </body>
 </html>

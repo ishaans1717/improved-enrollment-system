@@ -13,5 +13,5 @@ public interface UserSessionRepository extends JpaRepository<UserSession, Long> 
     Optional<UserSession> findBySessionToken(String sessionToken);
     List<UserSession> findByUserIdAndIsActive(Long userId, Boolean isActive);
     List<UserSession> findByUserId(Long userId);
-    Optional<UserSession> findByUserIdAndIsActiveTrue(Long userId);
+    List<UserSession> findByUserIdAndIsActiveTrue(Long userId);
 }

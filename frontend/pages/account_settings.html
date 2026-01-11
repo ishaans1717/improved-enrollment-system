@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Account Settings</title>
+    <link href="../styles/account_settings.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="top-left">
+        <img alt="ISU logo" src="../assets/logo_isu.png" style="width: 70px;">
+        <p>Account Settings</p>
+    </div>
+</header>
+<main class="main-section">
+    <div class="account-card">
+        <button class="edit-btn" onclick="window.location.href='home_page.html'"
+                style="background:#f3f4f6;color:#ef4444;margin-bottom:18px;">← Return to Home
+        </button>
+        <div class="account-title">Account Details</div>
+        <div class="account-details">
+            <div class="account-details-row"><span class="account-label">Full Name</span><span class="account-value"
+                                                                                               id="detail-name">Aaliyah Thomas</span>
+            </div>
+            <div class="account-details-row"><span class="account-label">Date of Birth</span><span class="account-value"
+                                                                                                   id="detail-dob">Oct 13, 2001</span>
+            </div>
+            <div class="account-details-row"><span class="account-label">Email</span><span class="account-value"
+                                                                                           id="detail-email">aaliyah.thomas@university.edu</span>
+            </div>
+            <div class="account-details-row"><span class="account-label">Major</span><span class="account-value"
+                                                                                           id="detail-major">Computer Science</span>
+            </div>
+            <div class="account-details-row"><span class="account-label">Student ID</span><span class="account-value"
+                                                                                                id="detail-id">20235501</span>
+            </div>
+        </div>
+        <button class="edit-btn" id="editBtn">Edit Details</button>
+        <form class="account-form" id="accountForm">
+            <label for="full-name">Full Name</label>
+            <input id="full-name" name="full-name" type="text" value="Aaliyah Thomas">
+            <label for="dob">Date of Birth</label>
+            <input id="dob" name="dob" type="date" value="2001-10-13">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" value="aaliyah.thomas@university.edu">
+            <label for="major">Major</label>
+            <input id="major" name="major" type="text" value="Computer Science">
+            <label for="student-id">Student ID</label>
+            <input disabled id="student-id" name="student-id" type="text" value="20235501">
+            <button class="save-btn" type="submit">Save Changes</button>
+            <button class="cancel-btn" id="cancelBtn" type="button">Cancel</button>
+        </form>
+    </div>
+</main>
+<script src="../js/account_settings.js"></script>
+</body>
+</html>

@@ -28,9 +28,9 @@ public class StudentController {
         return studentService.getStudentById(id);
     }
 
-    @PostMapping
+    @PostMapping("/add-new-student")
     public Student createStudent(@RequestBody Student student) {
-
+        student.setRole("STUDENT");
         return studentService.saveStudent(student);
     }
 
